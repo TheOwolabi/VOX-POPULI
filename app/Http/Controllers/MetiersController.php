@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Metier;
 use Illuminate\Http\Request;
+use App\Http\Requests\MetierFormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class MetiersController extends Controller
@@ -15,7 +16,9 @@ class MetiersController extends Controller
      */
     public function index()
     {
-        //
+        $metiers = Metier::where('user_id',Auth::id())->get()->reverse();
+       
+        return view('metier.all',compact('metiers'));
     }
 
     /**
@@ -25,7 +28,9 @@ class MetiersController extends Controller
      */
     public function create()
     {
-        //
+        $metier = new Metier;
+
+        return view('metier.create',compact('metier'));
     }
 
     /**
@@ -34,16 +39,18 @@ class MetiersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MetierFormRequest $request)
     {
         
-        Metier::create([
+        $metier = Metier::create([
             'title' => $request->title,
             'description' => $request->descr,
             'user_id' => Auth::id()
         ]);
 
         auth()->user()->setMetierId($metier);
+
+        return redirect()->route('metier.index');
 
     }
 
@@ -55,7 +62,7 @@ class MetiersController extends Controller
      */
     public function show(Metier $metier)
     {
-        //
+       
     }
 
     /**
@@ -66,7 +73,7 @@ class MetiersController extends Controller
      */
     public function edit(Metier $metier)
     {
-        //
+        return view('metier.edit',compact('metier'));
     }
 
     /**
@@ -76,9 +83,11 @@ class MetiersController extends Controller
      * @param  \App\Models\Metier  $metier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Metier $metier)
+    public function update(MetierFormRequest $request, Metier $metier)
     {
-        //
+        $metier->update($request->all());
+
+        return redirect()->route('metier.index');
     }
 
     /**
@@ -89,6 +98,8 @@ class MetiersController extends Controller
      */
     public function destroy(Metier $metier)
     {
-        //
+        Metier::destroy($metier->id);
+
+        return redirect()->route('metier.index');
     }
 }
