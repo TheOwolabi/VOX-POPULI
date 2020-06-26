@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 
 class Metier extends Model
@@ -12,6 +13,10 @@ class Metier extends Model
     ];
     public $timestamps = true;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
   
 
 }

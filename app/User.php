@@ -39,6 +39,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function metiers()
+    {
+      return $this->hasMany(Metier::class);
+    }
+
     public function setMetierId(Metier $metier)
     {
         $this->metier_id = $metier->id;
