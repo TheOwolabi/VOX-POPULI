@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Metier;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class RegisterController extends Controller
 {
@@ -49,11 +53,30 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'tel.digits'    => "Indiquez l'indicatif de votre pays suivi des 8 chiffres de votre numéro de téléphone (sans aucun espace)",
+            'title.required'    => "Précisez l'intitulé de votre métier",
+            'password.min' => 'Votre mot de passe doit contenir au moins 8 caractères',
+            'password.confirmed' => 'Les deux mots de passe ne sont pas identiques'
+        ];
+
+        if(!empty($data['descr']))
+        {
+           return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'tel' => ['required','digits:11'],
+                'title' => ['required'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+           ], $messages); 
+        }
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'tel' => ['required','digits:11'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $messages);
     }
 
     /**
@@ -64,10 +87,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+       $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'tel' => $data['tel'],
             'password' => Hash::make($data['password']),
         ]);
+    
+        if(!empty($data['descr']))
+        {
+        $metier = Metier::create([
+            'title' => $data['title'],
+            'description' => $data['descr'],
+            'user_id' => $user->id
+        ]);
+        
+        $user->setMetierId($metier);
+        }
+      
+
+
+       return $user;
+       
     }
 }

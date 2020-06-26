@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" novalidate  action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -24,6 +24,53 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="tel" class="col-md-4 col-form-label text-md-right">Telephone</label>
+
+                            <div class="col-md-6">
+                                <input id="tel"  type="tel" pattern="[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" class="form-control @error('tel') is-invalid @enderror" name="tel" value="{{ old('tel') }}"  autocomplete="tel" autofocus>
+                              
+                                @error('tel')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                    {{-- <form method="POST"  action="{{ route('metier.store') }}">
+                        @csrf --}}
+
+                        <div class="form-group row">
+                            <label for="metier" class="col-md-4 col-form-label text-md-right">Job title & description <br> (Non obligatoire) </label>
+
+                            <div class="col-md-3">
+                                <input id="title" type="text" class="form-control mt-2 @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" autocomplete="title">
+
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <textarea name="descr" id="descr" cols="30" class="form-control @error('descr') is-invalid @enderror" rows="2"  autocomplete="descr">{{ old('descr') }}</textarea>
+                                {{-- <input id="descr" type="text" class="form-control @error('descr') is-invalid @enderror" name="descr" value="{{ old('descr') }}" required autocomplete="descr"> --}}
+
+                                @error('descr')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            {{-- <button type="submit" class="col-md-2 btn btn-primary">Done</button> --}}
+                        </div>
+
+                    
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -43,7 +90,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required value="{{ old('password') }}" autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
