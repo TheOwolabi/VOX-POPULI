@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Metier;
+use App\Models\Commune;
 
 
 class User extends Authenticatable
@@ -39,6 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function commune(Type $var = null)
+    {
+        return $this->belongsTo(Commune::class);
+    }
 
     public function metiers()
     {
@@ -48,6 +53,12 @@ class User extends Authenticatable
     public function setMetierId(Metier $metier)
     {
         $this->metier_id = $metier->id;
+        $this->save();
+    }
+    
+    public function setCommuneId(Commune $commune)
+    {
+        $this->commune_id = $commune->id;
         $this->save();
     }
 }

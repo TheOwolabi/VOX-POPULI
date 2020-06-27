@@ -39,8 +39,6 @@
                             </div>
                         </div>
 
-                    {{-- <form method="POST"  action="{{ route('metier.store') }}">
-                        @csrf --}}
 
                         <div class="form-group row">
                             <label for="metier" class="col-md-4 col-form-label text-md-right">Job title & description <br> (Non obligatoire) </label>
@@ -67,9 +65,23 @@
                                 @enderror
                             </div>
 
-                            {{-- <button type="submit" class="col-md-2 btn btn-primary">Done</button> --}}
                         </div>
 
+
+                        <div class="form-group row">
+                            <label for="commune" class="col-md-4 col-form-label text-md-right">Commune de résidence</label>
+
+                            <div class="col-md-6">
+                                <select name="commune"  class="form-control" id="commune">
+                                    @include('auth.communes')   
+                                </select>
+                                @error('commune')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     
 
                         <div class="form-group row">

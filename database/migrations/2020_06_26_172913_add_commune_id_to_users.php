@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMetierIdOnUsers extends Migration
+class AddCommuneIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddMetierIdOnUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('metier_id')->nullable();
+          $table->unsignedBigInteger('commune_id')->nullable();
 
-            $table->foreign('metier_id')->references('id')->on('metiers')->onDelete('SET NULL');
+          $table->foreign('commune_id')->references('id')->on('communes')->onDelete('CASCADE');
         });
     }
 
@@ -28,7 +28,7 @@ class AddMetierIdOnUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('metier_id');
+            $table->dropColumn('commune_id');
         });
     }
 }

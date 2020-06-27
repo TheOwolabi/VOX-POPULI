@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Metier;
+use App\Models\Commune;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -97,15 +99,20 @@ class RegisterController extends Controller
     
         if(!empty($data['descr']))
         {
-        $metier = Metier::create([
-            'title' => $data['title'],
-            'description' => $data['descr'],
-            'user_id' => $user->id
-        ]);
-        
-        $user->setMetierId($metier);
+            $metier = Metier::create([
+                'title' => $data['title'],
+                'description' => $data['descr'],
+                'user_id' => $user->id
+            ]);
+            
+            $user->setMetierId($metier);
         }
       
+        $commune = Commune::create([
+            'name' => $data['commune'],
+        ]);
+        
+        $user->setCommuneId($commune);
 
 
        return $user;
