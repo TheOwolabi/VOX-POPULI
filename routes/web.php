@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', 'RootPagesController');
 
 Route::resource('/metier', 'MetiersController');
+Route::resource('/officiel', 'OfficielController');
+Route::resource('/poste', 'PostesController');
 
 Auth::routes();
 

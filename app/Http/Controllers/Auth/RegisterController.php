@@ -107,12 +107,21 @@ class RegisterController extends Controller
             
             $user->setMetierId($metier);
         }
-      
-        $commune = Commune::create([
-            'name' => $data['commune'],
-        ]);
+
+        if(!Commune::where('name',$data['commune'])->exists())
+        {
+            $commune = Commune::create([
+                'name' => $data['commune'],
+            ]);
         
-        $user->setCommuneId($commune);
+            $user->setCommuneId($commune);
+        }
+        else 
+        {
+            $commune = Commune::where('name',$data['commune'])->first();
+            $user->setCommuneId($commune);
+        }
+    
 
 
        return $user;

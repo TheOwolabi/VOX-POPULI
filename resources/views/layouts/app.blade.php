@@ -59,7 +59,12 @@
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                        Profile
                                     </a>
-
+                                    <a class="dropdown-item" href="{{ route('officiel.index') }}">
+                                        Officiels
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('poste.index') }}">
+                                        Postes
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('metier.index') }}">
                                         Métiers
                                     </a>

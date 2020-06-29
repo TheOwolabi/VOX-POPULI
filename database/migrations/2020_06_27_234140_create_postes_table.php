@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommunesTable extends Migration
+class CreatePostesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCommunesTable extends Migration
      */
     public function up()
     {
-        Schema::create('communes', function (Blueprint $table) {
+        Schema::create('postes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->double('population',11,2)->nullable();
-           
+            $table->string('intitule')->unique();
+            $table->string('fiche');
+            $table->unsignedInteger('mandat');
+
+            
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateCommunesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communes');
+        Schema::dropIfExists('postes');
     }
 }

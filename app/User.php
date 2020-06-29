@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Metier;
 use App\Models\Commune;
+use App\Models\Officiel;
 
 
 class User extends Authenticatable
@@ -50,6 +51,11 @@ class User extends Authenticatable
       return $this->hasMany(Metier::class);
     }
 
+    public function officiel(Type $var = null)
+    {
+        return $this->hasOne(Officiel::class);
+    }
+
     public function setMetierId(Metier $metier)
     {
         $this->metier_id = $metier->id;
@@ -60,5 +66,43 @@ class User extends Authenticatable
     {
         $this->commune_id = $commune->id;
         $this->save();
+    }
+
+
+    public function state($t)
+    {
+        $officiels = Officiel::all();
+
+        foreach ($officiels as $officiel)
+        {
+            if(($this->id == $officiel->user_id) & ($officiel->traker != $t ))
+            {
+                return "disabled";
+            }
+        }
+
+           
+        return "";
+    }
+
+    public function style($id,$t)
+    {
+        $officiels = Officiel::all();
+
+        foreach ($officiels as $officiel)
+        {
+            if($officiel->traker == $t )
+            {
+                return "badge-warning";
+            }
+
+            if(($this->id == $officiel->user_id) & ($officiel->traker != $t ))
+            {
+                return "badge-secondary";
+            }
+        }
+        
+       
+        return "border border-warning";
     }
 }
