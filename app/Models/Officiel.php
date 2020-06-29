@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Poste;
+use App\Models\Commune;
 use App\User;
 
 
@@ -20,6 +21,11 @@ class Officiel extends Model
     public function user()
     {
       return $this->belongsTo(User::class);
+    }
+
+    public function commune()
+    {
+      return $this->belongsTo(Commune::class);
     }
 
 
