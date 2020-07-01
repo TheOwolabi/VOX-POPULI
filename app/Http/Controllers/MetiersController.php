@@ -49,7 +49,7 @@ class MetiersController extends Controller
         
         $metier = Metier::create([
             'title' => $request->title,
-            'description' => $request->descr,
+            'description' => $request->description,
             'user_id' => Auth::id()
         ]);
 

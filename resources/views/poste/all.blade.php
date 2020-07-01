@@ -1,14 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
-    @empty($postes)
-       <p> 
-           VOUS N'AVEZ RENSEIGNE AUCUN poste POUR LE MOMENT 
-        </p> 
-    @endempty
-    
-    
+@section('content') 
     <div class="container-fluid">
+        @if ($postes->isEmpty())
+            @include('shared._empty',['model'=>'poste'])
+        @else
         <div class="d-flex justify-content-center">
             <a href="{{route('poste.create')}}" class="btn btn-success">AJOUTER POSTE</a>
         </div>
@@ -42,5 +38,6 @@
             
         </div>
      @endforeach
+     @endif
     </div> 
 @endsection

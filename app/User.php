@@ -8,11 +8,17 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Metier;
 use App\Models\Commune;
 use App\Models\Officiel;
+use App\Traits\Officiel_helpers;
+use App\Traits\Commune_helpers;
+use App\Traits\Metier_helpers;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Officiel_helpers;
+    use Commune_helpers;
+    use Metier_helpers;
 
     /**
      * The attributes that are mass assignable.
@@ -41,7 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function commune(Type $var = null)
+    public function commune()
     {
         return $this->belongsTo(Commune::class);
     }
@@ -51,58 +57,9 @@ class User extends Authenticatable
       return $this->hasMany(Metier::class);
     }
 
-    public function officiel(Type $var = null)
+    public function officiel()
     {
         return $this->hasOne(Officiel::class);
     }
 
-    public function setMetierId(Metier $metier)
-    {
-        $this->metier_id = $metier->id;
-        $this->save();
-    }
-    
-    public function setCommuneId(Commune $commune)
-    {
-        $this->commune_id = $commune->id;
-        $this->save();
-    }
-
-
-    public function state($t)
-    {
-        $officiels = Officiel::all();
-
-        foreach ($officiels as $officiel)
-        {
-            if(($this->id == $officiel->user_id) & ($officiel->traker != $t ))
-            {
-                return "disabled";
-            }
-        }
-
-           
-        return "";
-    }
-
-    public function style($id,$t)
-    {
-        $officiels = Officiel::all();
-
-        foreach ($officiels as $officiel)
-        {
-            if($officiel->traker == $t )
-            {
-                return "badge-warning";
-            }
-
-            if(($this->id == $officiel->user_id) & ($officiel->traker != $t ))
-            {
-                return "badge-secondary";
-            }
-        }
-        
-       
-        return "border border-warning";
-    }
 }

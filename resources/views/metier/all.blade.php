@@ -1,14 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
-    @empty($metiers)
-       <p> 
-           VOUS N'AVEZ RENSEIGNE AUCUN METIER POUR LE MOMENT 
-        </p> 
-    @endempty
-    
-    
+@section('content')  
     <div class="container-fluid">
+        @if ($metiers->isEmpty())
+            @include('shared._empty',['model'=>'metier'])
+        @else
         <div class="d-flex justify-content-center">
             <a href="{{route('metier.create')}}" class="btn btn-success">AJOUTER METIER</a>
         </div>
@@ -42,5 +38,6 @@
             
         </div>
      @endforeach
+     @endif
     </div> 
 @endsection

@@ -6,7 +6,6 @@
         <div class="col-md-6 mx-auto mt-4 bg-light shadow-sm p-4">
             <form action="{{route('poste.store')}}" method="post">  
                 @csrf
-
                 <div class="form-group row mt-3">   
                     <div class="col-md-5">
                         <label for="intitule">Intitulé du poste</label>
