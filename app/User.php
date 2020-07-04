@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Metier;
 use App\Models\Commune;
 use App\Models\Officiel;
+use App\Models\Idea;
 use App\Traits\Officiel_helpers;
 use App\Traits\Commune_helpers;
 use App\Traits\Metier_helpers;
@@ -61,5 +62,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Officiel::class);
     }
-
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
 }

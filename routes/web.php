@@ -18,6 +18,7 @@ Route::resource('/', 'RootPagesController');
 Route::resource('/metier', 'MetiersController');
 Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
+Route::resource('/idea', 'IdeaController');
 
 Auth::routes();
 

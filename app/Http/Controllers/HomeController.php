@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Metier;
+use App\Models\Idea;
 
 
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $metiers = Metier::all()->reverse();
-        return view('home',compact('metiers'));
+        $idea = new Idea;
+        return view('home',compact('idea'));
     }
 }
