@@ -3,7 +3,7 @@
 @section('content')  
     <div class="container-fluid">
         @if ($metiers->isEmpty())
-            @include('shared._empty',['model'=>'metier'])
+        @include('shared._empty',['model'=>'metier','btn'=>'UN METIER', 'msg' => "aucun métier n'a pour le moment été créé"]) 
         @else
         <div class="d-flex justify-content-center">
             <a href="{{route('metier.create')}}" class="btn btn-success">AJOUTER METIER</a>

@@ -1,15 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-a.icon {
-  color: #636b6f;
-  text-decoration: none;
+a.icon.delete:hover {
+  color: red;
+  transition: 0.2s;
+}
+
+a.icon.edit:hover {
+  color: #f1ce08;
+  transition: 0.2s;
 }
 
 a.icon.up {
-  color: blue;
+  color: #006eff;
 }
 
 a.icon.down {
+  color: red;
+}
+
+a.icon.down:hover {
   color: red;
 }
 

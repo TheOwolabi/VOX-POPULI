@@ -3,11 +3,11 @@
 @section('content')
     <div class="container-fluid">
             @if ($officiels->isEmpty())
-               @include('shared._empty',['model'=>'officiel'])
+             @include('shared._empty',['model'=>'officiel','btn'=>'UN OFFICIEL', 'msg' => "aucun officiel n'a pour le moment été créé"]) 
             @else
              <p class="d-flex justify-content-center lead">
                 <a href="{{route('officiel.create')}}" class="btn btn-success">AJOUTER UN OFFICIEL</a>
-            </p>
+             </p>
              
              <div class="row mt-3">
                 @foreach ($officiels as $officiel)

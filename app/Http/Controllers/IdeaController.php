@@ -25,7 +25,8 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        //
+        $idea = new Idea;
+       return view('idea.create',compact('idea'));
     }
 
     /**
@@ -45,7 +46,7 @@ class IdeaController extends Controller
         ]);
 
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
-        return back();
+        return redirect()->route('index');
 
     }
 
@@ -57,7 +58,6 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
-        //
     }
 
     /**
@@ -68,7 +68,7 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
-        //
+        return view('idea.edit',compact('idea'));
     }
 
     /**
@@ -80,7 +80,11 @@ class IdeaController extends Controller
      */
     public function update(IdeaFormRequest $request, Idea $idea)
     {
-        //
+        $idea->update($request->all());
+
+        notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
+
+        return redirect()->route('index');
     }
 
     /**
@@ -91,6 +95,10 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        //
+        $idea->delete();
+
+        notify()->success("Idée supprimée avec succèss");
+
+        return redirect()->route('index');
     }
 }

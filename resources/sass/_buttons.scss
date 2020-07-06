@@ -1,15 +1,33 @@
-a.icon
+a
 {
-    color: #636b6f;
-    text-decoration: none;
-
-    &.up
+    
+    &.icon
     {
-        color: blue;
-    }
+        &.delete:hover
+        {
+            color: red;
+            transition: 0.2s;
+        }
 
-    &.down
-    {
-        color: red;
+        &.edit:hover
+        {
+            color: rgb(241, 206, 8);
+            transition: 0.2s;
+        }
+
+        &.up
+        {
+            color: rgb(0, 110, 255);
+        }
+
+        &.down
+        {
+            color: red;
+
+            &:hover
+            {
+                color: red;
+            }
+        }
     }
 }

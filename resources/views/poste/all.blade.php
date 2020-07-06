@@ -3,7 +3,7 @@
 @section('content') 
     <div class="container-fluid">
         @if ($postes->isEmpty())
-            @include('shared._empty',['model'=>'poste'])
+        @include('shared._empty',['model'=>'poste','btn'=>'UN POSTE', 'msg' => "aucun poste n'a pour le moment été créé"]) 
         @else
         <div class="d-flex justify-content-center">
             <a href="{{route('poste.create')}}" class="btn btn-success">AJOUTER POSTE</a>

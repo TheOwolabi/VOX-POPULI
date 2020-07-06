@@ -23,6 +23,17 @@
                 padding-top: 40px;
             }
 
+            a
+            {
+                color: #636b6f;
+                text-decoration: none;
+            }
+
+            a:hover
+            {
+                text-decoration: none;
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -43,9 +54,9 @@
                 top: 8px;
             }
 
-            .content {
+            /* .content {
                 text-align: center;
-            }
+            } */
 
             .title {
                 font-size: 84px;
@@ -67,6 +78,8 @@
           
         </style>
 
+    @notifyCss
+
     <link href="{{ asset('css/font/flaticon.css') }}" rel="stylesheet">
     </head>
     <body>
@@ -86,37 +99,67 @@
             @endif
 
             <div class="content">
-                <div class="row">
-                    @foreach ($ideas as $idea)
-                        <div class="m-b-md col-md-4">
-                            <div class="card">
-                                <div class="card-header"> {{$idea->topic}} </div>
-                                <div class="card-body"> {{$idea->content}} </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-md-7 mt-3">
-                                            <span> {{$idea->user->name}} </span>
-                                        </div>
-                                        <div class="border-dark mt-3">
-                                            <a class="ml-3 p-2 icon {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
-                                            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name='vote' value="1">
-                                            </form>
+                @if ($ideas->isEmpty())
+                 @include('shared._empty',['model'=>'idea','btn'=>'UNE IDEE', 'msg' => "aucune idée n'a pour le moment été émise"]) 
+                @else
+                    <div class="d-flex justify-content-center">
+                        <a href="{{route('home')}}" class="btn btn-success">AJOUTER UNE IDEE</a>
+                    </div>
+                    <div class="row mt-4">
+                        @foreach ($ideas as $idea)
+                            <div class="m-b-md col-md-4">
+                                <div class="card">
+                                    <div class="card-header"> 
+                                        <div class="row">
+                                            <div class="col-md-7 "> {{$idea->topic}}   </div>
+                                            <div class="col-md-5"> 
+                                                <div class="d-flex flex-row-reverse">
+                                                    @can('delete', $idea)
+                                                        <a href="" class="icon delete" onclick="event.preventDefault(); document.getElementById('delete-{{$idea->id}}').submit();"> <i class="flaticon-delete"></i> </a>
+                                                
+                                                        <form id="delete-{{$idea->id}}" action="{{route('idea.destroy',$idea)}}" style="display:none;" method="post">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        </form>
+                                                    @endcan
 
-                                            <a class="p-2 icon {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
-                                            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name='vote' value="-1">
-                                            </form>
+                                                    @can('update', $idea)
+                                                    <a  class=" icon edit" href="{{route('idea.edit',$idea)}}"> <i class="flaticon-pencil"></i> </a>
+                                                    @endcan
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body"> {{$idea->content}} </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-7 mt-3">
+                                                <span> {{$idea->user->name}} </span>
+                                            </div>
+                                            <div class="border-dark mt-3">
+                                                <a class="ml-3 p-2 icon {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
+                                                <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name='vote' value="1">
+                                                </form>
+
+                                                <a class="p-2 icon {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
+                                                <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name='vote' value="-1">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> 
-                    @endforeach
-                </div>
+                            </div> 
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
+        
+        @include('notify::messages')
+        @notifyJs
     </body>
 </html>
