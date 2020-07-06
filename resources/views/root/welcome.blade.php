@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -17,7 +20,7 @@
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
-                margin: 0;
+                padding-top: 40px;
             }
 
             .full-height {
@@ -37,7 +40,7 @@
             .top-right {
                 position: absolute;
                 right: 10px;
-                top: 18px;
+                top: 8px;
             }
 
             .content {
@@ -61,10 +64,13 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+          
         </style>
+
+    <link href="{{ asset('css/font/flaticon.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="container">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -80,12 +86,35 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                <div class="row">
+                    @foreach ($ideas as $idea)
+                        <div class="m-b-md col-md-4">
+                            <div class="card">
+                                <div class="card-header"> {{$idea->topic}} </div>
+                                <div class="card-body"> {{$idea->content}} </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-md-7 mt-3">
+                                            <span> {{$idea->user->name}} </span>
+                                        </div>
+                                        <div class="border-dark mt-3">
+                                            <a class="ml-3 p-2 icon {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
+                                            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name='vote' value="1">
+                                            </form>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
+                                            <a class="p-2 icon {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
+                                            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name='vote' value="-1">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    @endforeach
                 </div>
             </div>
         </div>

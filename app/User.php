@@ -66,4 +66,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    public function voteIdeas()
+    {
+       return $this->morphedByMany(Idea::class,'votable')->withPivot('value');
+    }
+
+    public function VoteI(Idea $idea, $vote)
+    {
+        if($this->voteIdeas()->where('votable_id',$idea->id)->exists())
+        {
+            $this->voteIdeas()->updateExistingPivot($idea,['value'=>$vote]);
+        }
+        else
+        {
+            $this->voteIdeas()->attach($idea,['value'=>$vote]);
+        }
+    }
+    
 }

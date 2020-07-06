@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Idea;
 
 class RootPagesController extends Controller
 {
    public function index()
    {
-        return view('root.welcome');
+      $ideas = Idea::all()->reverse();
+
+      return view('root.welcome',compact('ideas'));
    }
 }

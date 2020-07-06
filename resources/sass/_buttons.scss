@@ -1,0 +1,15 @@
+a.icon
+{
+    color: #636b6f;
+    text-decoration: none;
+
+    &.up
+    {
+        color: blue;
+    }
+
+    &.down
+    {
+        color: red;
+    }
+}
