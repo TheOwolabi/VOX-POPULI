@@ -31,7 +31,7 @@
                             </div>
                         </div>
     
-                        <div class="card-body">
+                        <div class="card-body mb-3">
                             {{$officiel->poste->fiche}}
                         </div>
                     </div>   

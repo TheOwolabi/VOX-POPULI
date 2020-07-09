@@ -20,7 +20,8 @@
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
-                padding-top: 40px;
+                margin: 0px;
+              
             }
 
             .full-height {
@@ -76,22 +77,59 @@
     <link href="{{ asset('css/font/flaticon.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
                         @endif
-                    @endauth
-                </div>
-            @endif
+                    @else
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
 
-            <div class="content">
+                                <li>
+                                    <a class="nav-link" href="{{ route('officiel.index') }}">
+                                        Officiels
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a id="navbar" class="nav-link" href="{{ route('home') }}" role="button">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+                                </li>
+                
+                               
+                            </div>
+                
+                           
+                            
+                
+                        </li>
+                    @endguest
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+            <main class="container">
                 @if ($ideas->isEmpty())
                  @include('shared._empty',['model'=>'idea','btn'=>'UNE IDEE', 'msg' => "aucune idée n'a pour le moment été émise"]) 
                 @else   
@@ -142,13 +180,13 @@
                                                 <i class="fa fa-1x fa-user-circle" aria-hidden="true"></i> <span class="ml-2"> {{$idea->user->name}} </span>
                                             </div>
                                             <div class="border-dark mt-2">
-                                                <a class="ml-3 p-2 icon pour {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
+                                                <a class="ml-3 p-2 icon pour {{$idea->Votebuttons_state() == 'up' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="1">
                                                 </form>
 
-                                                <a class="p-2 icon contre {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
+                                                <a class="p-2 icon contre {{$idea->Votebuttons_state() == 'down' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="-1">
@@ -161,8 +199,8 @@
                         @endforeach
                     </div>
                 @endif
-            </div>
-        </div>
+                </main>
+        
         
         {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> --}}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

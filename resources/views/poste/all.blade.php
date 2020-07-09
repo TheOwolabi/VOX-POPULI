@@ -14,24 +14,25 @@
              <div class="card mt-4">
                  <div class="card-header">
                      <div class="row">
-                         <div class="col-md-9 pt-2">
+                         <div class="col-md-9">
                             {{$poste->intitule}} 
                          </div>
                          <div class="col-md-3 pr-1">
                             <div class="float-right">
-                                <a href="{{route('poste.edit',$poste->id)}}" class=" btn btn-outline-warning"> Edit</a>
+                                <a href="{{route('poste.edit',$poste->id)}}" class=" icon edit">  <i class="flaticon-pencil"></i> </a>
                             
-                                <form style="display: inline-block;" action="{{route('poste.destroy', $poste->id)}}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                <a href="" class="icon delete" onclick="event.preventDefault(); document.getElementById('delete-{{$poste->id}}').submit();"> <i class="flaticon-delete"></i> </a>
+                        
+                                <form id="delete-{{$poste->id}}" action="{{route('poste.destroy',$poste)}}" style="display:none;" method="post">
+                                @method('DELETE')
+                                @csrf
                                 </form>
                             </div>
                          </div>
                      </div>
                  </div>
 
-                 <div class="card-body">
+                 <div class="card-body pb-3">
                     {{$poste->fiche ?? '-'}}
                  </div>
              </div>

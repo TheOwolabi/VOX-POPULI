@@ -9,15 +9,47 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body
+{
+    font-weight: 200;
+}
+
 a
 {
     color: #636b6f;
     text-decoration: none;
 }
 
+thead
+{
+    height: 1285.820px;
+    width: 47.273px;
+    background-color: #77be7724;
+}
+
+tbody:hover
+{
+    background-color:rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.5s;
+    box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+
+}
+
 a:hover
 {
     text-decoration: none;
+}
+
+.card:hover
+{
+    .card-header
+    {
+        background-color: #77be7724;
+        transition: 0.6s;
+    }
+   
 }
 
 .card-body
@@ -30,4 +62,20 @@ a:hover
     margin-left: 10px;
     border: transparent;
     background-color: transparent;
+
+}
+
+#nav
+{
+    width: 168.73px;
+    height: 160px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    box-shadow: 1px 1px 3px rgb(0, 0, 0);
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #41790b;
+    font-size: 17px;
+    transition: 0.3s;
 }

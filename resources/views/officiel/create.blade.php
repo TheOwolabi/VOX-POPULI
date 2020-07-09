@@ -7,8 +7,8 @@
                 <thead>
                 <tr>
                     {{-- <th scope="col"></th> --}}
-                    <th scope="col"><center> Citoyens </center></th>
-                    <th scope="col"><center>Communes</center></th>
+                    <th style="height: 20.273px; width:465.636px ;" scope="col"><center> Citoyens </center></th>
+                    <th style="height: 20.273px; width:296.909px ;" scope="col"><center>Communes</center></th>
                     <th scope="col"><center>Postes disponibles</center></th>
                 </tr>
                 </thead>

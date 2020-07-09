@@ -9,17 +9,16 @@ use App\Models\Metier;
 use App\Models\Commune;
 use App\Models\Officiel;
 use App\Models\Idea;
-use App\Traits\Officiel_helpers;
-use App\Traits\Commune_helpers;
-use App\Traits\Metier_helpers;
+use App\Traits;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use Officiel_helpers;
-    use Commune_helpers;
-    use Metier_helpers;
+    use Traits\Officiel_helpers;
+    use Traits\Commune_helpers;
+    use Traits\Metier_helpers;
+    use Traits\Idea_helpers;
 
     /**
      * The attributes that are mass assignable.
@@ -70,18 +69,6 @@ class User extends Authenticatable
     public function voteIdeas()
     {
        return $this->morphedByMany(Idea::class,'votable')->withPivot('value');
-    }
-
-    public function VoteI(Idea $idea, $vote)
-    {
-        if($this->voteIdeas()->where('votable_id',$idea->id)->exists())
-        {
-            $this->voteIdeas()->updateExistingPivot($idea,['value'=>$vote]);
-        }
-        else
-        {
-            $this->voteIdeas()->attach($idea,['value'=>$vote]);
-        }
     }
     
 }
