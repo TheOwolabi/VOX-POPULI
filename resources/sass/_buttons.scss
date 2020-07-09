@@ -1,17 +1,52 @@
+div.popover-body
+{
+    border: solid 1px red;
+}
+
 a
 {
-    
+
     &.icon
     {
+        &.delete
+        {
+            color: rgb(184, 6, 6);
+        }
         &.delete:hover
         {
             color: red;
             transition: 0.2s;
+        }  
+        
+        // &.share
+        // {
+        //     color: rgb(184, 6, 6);
+        // }
+        &.share:hover
+        {
+            color: rgb(202, 152, 16);
+            transition: 0.2s;
         }
 
+        &.edit
+        {
+            color: rgb(161, 138, 4);
+        }
         &.edit:hover
         {
             color: rgb(241, 206, 8);
+            transition: 0.2s;
+        }
+
+        &.pour:hover
+        {
+            color: rgb(0, 110, 255);
+            transition: 0.2s;
+        }
+
+        &.contre:hover
+        {
+            color: red;
             transition: 0.2s;
         }
 

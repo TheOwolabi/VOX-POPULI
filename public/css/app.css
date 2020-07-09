@@ -1,12 +1,39 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+div.popover-body {
+  border: solid 1px red;
+}
+
+a.icon.delete {
+  color: #b80606;
+}
+
 a.icon.delete:hover {
   color: red;
   transition: 0.2s;
 }
 
+a.icon.share:hover {
+  color: #ca9810;
+  transition: 0.2s;
+}
+
+a.icon.edit {
+  color: #a18a04;
+}
+
 a.icon.edit:hover {
   color: #f1ce08;
+  transition: 0.2s;
+}
+
+a.icon.pour:hover {
+  color: #006eff;
+  transition: 0.2s;
+}
+
+a.icon.contre:hover {
+  color: red;
   transition: 0.2s;
 }
 
@@ -20,6 +47,29 @@ a.icon.down {
 
 a.icon.down:hover {
   color: red;
+}
+
+#social-links {
+  margin-bottom: 0px;
+}
+
+#social-links ul {
+  margin-bottom: 0px;
+  list-style: none;
+  padding: 10px;
+  display: inline-block;
+  width: 49.36px;
+  height: 184.36px;
+}
+
+#social-links .social-button {
+  overflow: hidden;
+  font-size: 25px;
+}
+
+#social-links .social-button:hover {
+  font-size: 33px;
+  transition: 0.2s;
 }
 
 /*!
@@ -10948,5 +10998,25 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+a {
+  color: #636b6f;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.card-body {
+  padding-bottom: 0px;
+}
+
+.dropdown-menu {
+  border: solid 1px greenyellow;
+  margin-left: 10px;
+  border: transparent;
+  background-color: transparent;
 }
 

@@ -1,0 +1,26 @@
+#social-links
+{
+    margin-bottom: 0px;
+    ul
+    {
+       margin-bottom: 0px;
+       list-style: none; 
+       padding: 10px; 
+       display: inline-block; 
+       width: 49.36px;
+       height: 184.36px;
+    }
+    .social-button
+    {
+        overflow: hidden;
+
+        font-size: 25px;
+
+        &:hover
+        {
+            font-size: 33px; 
+            transition: 0.2s;
+        }
+    }
+}
+

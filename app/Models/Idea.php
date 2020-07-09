@@ -38,28 +38,34 @@ class Idea extends Model
        {
             if($value == 'contre')
             {
-                return $this->downVotes()->count('value');
+                return $this->downVotes()->count();
             }
             elseif($value == 'pour')
             {
-                return $this->upVotes()->count('value');
+                return $this->upVotes()->count();
             }
        }
     }
 
     public function state()
     {
-        if($this->votes()->where('votable_id',$this->id)->exists())
+        if(auth()->user())
         {
-            if($this->votes()->where('votable_id',$this->id)->first()->pivot->value == -1)
+            if($this->votes()->where('user_id',auth()->user()->id)->exists())
             {
-                return 'down';
-            }
-            elseif($this->votes()->where('votable_id',$this->id)->first()->pivot->value == 1)
-            {
-                return 'up';
+                if($this->votes()->where('user_id',auth()->user()->id)->first()->pivot->value == -1)
+                {
+                    return 'down';
+                }
+                elseif($this->votes()->where('user_id',auth()->user()->id)->first()->pivot->value == 1)
+                {
+                    return 'up';
+                }
             }
         }
+        
+
+        return "";
     }
    
 }

@@ -23,17 +23,6 @@
                 padding-top: 40px;
             }
 
-            a
-            {
-                color: #636b6f;
-                text-decoration: none;
-            }
-
-            a:hover
-            {
-                text-decoration: none;
-            }
-
             .full-height {
                 height: 100vh;
             }
@@ -80,6 +69,10 @@
 
     @notifyCss
 
+    <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fontawesome/js/all.css') }}" rel="stylesheet">
+   
+
     <link href="{{ asset('css/font/flaticon.css') }}" rel="stylesheet">
     </head>
     <body>
@@ -101,17 +94,17 @@
             <div class="content">
                 @if ($ideas->isEmpty())
                  @include('shared._empty',['model'=>'idea','btn'=>'UNE IDEE', 'msg' => "aucune idée n'a pour le moment été émise"]) 
-                @else
+                @else   
                     <div class="d-flex justify-content-center">
                         <a href="{{route('home')}}" class="btn btn-success">AJOUTER UNE IDEE</a>
                     </div>
                     <div class="row mt-4">
                         @foreach ($ideas as $idea)
                             <div class="m-b-md col-md-4">
-                                <div class="card">
+                                <div class="card ">
                                     <div class="card-header"> 
                                         <div class="row">
-                                            <div class="col-md-7 "> {{$idea->topic}}   </div>
+                                        <div class="col-md-7 "> <a href="{{route('idea.show',$idea)}}">{{$idea->topic}} </a>  </div>
                                             <div class="col-md-5"> 
                                                 <div class="d-flex flex-row-reverse">
                                                     @can('delete', $idea)
@@ -130,20 +123,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body"> {{$idea->content}} </div>
+                                    <div class="card-body overflow-hidden"> 
+                                        <div class="d-flex flex-row">
+                                            <div class=""> 
+                                                <div class=""> 
+                                                 {!!Share::page(route('idea.show',$idea),'A découvrir !!!')->facebook()->twitter()->linkedin()->whatsapp();!!}
+                                                </div>
+                                            </div>
+                                            <div class="p-2 my-auto"> 
+                                                {{$idea->content}} 
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-md-7 mt-3">
-                                                <span> {{$idea->user->name}} </span>
+                                            <div class="col-md-7 mt-2">
+                                                <i class="fa fa-1x fa-user-circle" aria-hidden="true"></i> <span class="ml-2"> {{$idea->user->name}} </span>
                                             </div>
-                                            <div class="border-dark mt-3">
-                                                <a class="ml-3 p-2 icon {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
+                                            <div class="border-dark mt-2">
+                                                <a class="ml-3 p-2 icon pour {{$idea->state() == 'up' ? $idea->state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="1">
                                                 </form>
 
-                                                <a class="p-2 icon {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
+                                                <a class="p-2 icon contre {{$idea->state() == 'down' ? $idea->state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="-1">
@@ -159,7 +164,17 @@
             </div>
         </div>
         
+        {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> --}}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/share.js') }}"></script>
         @include('notify::messages')
         @notifyJs
+        <script>
+            $(function () {
+            $('[data-toggle="popover"]').popover()
+            })
+        </script>
     </body>
 </html>

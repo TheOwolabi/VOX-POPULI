@@ -4,6 +4,30 @@
 // Variables
 @import 'variables';
 @import 'buttons';
+@import 'sharing';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+a
+{
+    color: #636b6f;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
+.card-body
+{
+    padding-bottom: 0px;
+}
+.dropdown-menu
+{
+    border: solid 1px greenyellow;
+    margin-left: 10px;
+    border: transparent;
+    background-color: transparent;
+}
