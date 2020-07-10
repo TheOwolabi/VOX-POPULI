@@ -19,7 +19,10 @@ Route::resource('/metier', 'MetiersController');
 Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
 Route::resource('/idea', 'IdeaController');
-Route::post('/idea/{idea}/vote','VoteController');
+Route::post('/idea/{idea}/vote','VoteIdeaController@store');
+Route::delete('/idea/{idea}/vote','VoteIdeaController@destroy');
+Route::post('/idea/{idea}/favorite','FavoriteIdeaController@store');
+Route::delete('/idea/{idea}/favorite','FavoriteIdeaController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

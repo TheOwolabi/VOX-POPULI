@@ -52,4 +52,19 @@ trait Idea_helpers
         }
     }
 
+    public function isFavorited()
+    {
+        if(auth()->user())
+        {
+            if($this->favorites()->where('user_id',auth()->user()->id)->exists())
+            {
+                return "favorited";
+            }
+            else
+            {
+                return "";
+            }
+        }
+    }
+
 }

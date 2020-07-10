@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 
-class VoteController extends Controller
+class VoteIdeaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function __invoke(Idea $idea, Request $request)
+    public function store(Idea $idea, Request $request)
     {
         $vote = (int) $request->vote;
         
@@ -20,4 +20,12 @@ class VoteController extends Controller
 
         return back();
     }
+
+    public function destroy(Idea $idea, Request $request)
+    {    
+        auth()->user()->voteIdeas()->detach($idea);
+
+        return back();
+    }
+
 }

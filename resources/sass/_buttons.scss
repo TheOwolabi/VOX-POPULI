@@ -8,6 +8,16 @@ a
 
     &.icon
     {
+        &.favorite:hover
+        {
+            color: rgb(137, 207, 31);
+        }
+
+        &.favorited
+        {
+            color: rgb(137, 207, 31);
+        }
+
         &.delete
         {
             color: rgb(184, 6, 6);

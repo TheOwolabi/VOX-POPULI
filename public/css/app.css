@@ -4,6 +4,14 @@ div.popover-body {
   border: solid 1px red;
 }
 
+a.icon.favorite:hover {
+  color: #89cf1f;
+}
+
+a.icon.favorited {
+  color: #89cf1f;
+}
+
 a.icon.delete {
   color: #b80606;
 }

@@ -21,5 +21,10 @@ class Idea extends Model
     {
         return  $this->morphToMany(User::class,'votable')->withPivot('value');
     }
+
+    public function favorites()
+    {
+       return $this->morphToMany(User::class,'favorisable');
+    }
    
 }

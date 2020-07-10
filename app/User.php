@@ -70,5 +70,10 @@ class User extends Authenticatable
     {
        return $this->morphedByMany(Idea::class,'votable')->withPivot('value');
     }
+
+    public function favoriteIdeas()
+    {
+       return $this->morphedByMany(Idea::class,'favorisable');
+    }
     
 }

@@ -145,6 +145,17 @@
                                         <div class="col-md-7 "> <a href="{{route('idea.show',$idea)}}">{{$idea->topic}} </a>  </div>
                                             <div class="col-md-5"> 
                                                 <div class="d-flex flex-row-reverse">
+                                                    
+                                                <a href="" class="icon favorite {{$idea->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$idea->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
+                                            
+                                                    <form id="favorite-{{$idea->id}}" action="/idea/{{$idea->id}}/favorite" style="display:none;" method="post">
+                                                        @csrf
+                                                        @if($idea->isFavorited())
+                                                            @method('DELETE')
+                                                        @endif
+                                                    </form>
+                                                   
+
                                                     @can('delete', $idea)
                                                         <a href="" class="icon delete" onclick="event.preventDefault(); document.getElementById('delete-{{$idea->id}}').submit();"> <i class="flaticon-delete"></i> </a>
                                                 
@@ -184,12 +195,20 @@
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="1">
+
+                                                    @if($idea->Votebuttons_state())
+                                                        @method('DELETE')
+                                                    @endif
                                                 </form>
 
                                                 <a class="p-2 icon contre {{$idea->Votebuttons_state() == 'down' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name='vote' value="-1">
+                                                    
+                                                    @if($idea->Votebuttons_state())
+                                                        @method('DELETE')
+                                                    @endif
                                                 </form>
                                             </div>
                                         </div>
