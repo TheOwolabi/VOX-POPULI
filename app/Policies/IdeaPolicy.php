@@ -28,9 +28,9 @@ class IdeaPolicy
      * @param  \App\Models\Idea  $idea
      * @return mixed
      */
-    public function view(User $user, Idea $idea)
+    public function favorite(User $user, Idea $idea)
     {
-        //
+        return auth()->user();
     }
 
     /**

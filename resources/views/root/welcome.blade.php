@@ -145,15 +145,16 @@
                                         <div class="col-md-7 "> <a href="{{route('idea.show',$idea)}}">{{$idea->topic}} </a>  </div>
                                             <div class="col-md-5"> 
                                                 <div class="d-flex flex-row-reverse">
-                                                    
-                                                <a href="" class="icon favorite {{$idea->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$idea->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
-                                            
-                                                    <form id="favorite-{{$idea->id}}" action="/idea/{{$idea->id}}/favorite" style="display:none;" method="post">
-                                                        @csrf
-                                                        @if($idea->isFavorited())
-                                                            @method('DELETE')
-                                                        @endif
-                                                    </form>
+                                                    @can('favorite', $idea)
+                                                        <a href="" class="icon favorite {{$idea->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$idea->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
+                                    
+                                                        <form id="favorite-{{$idea->id}}" action="/idea/{{$idea->id}}/favorite" style="display:none;" method="post">
+                                                            @csrf
+                                                            @if($idea->isFavorited())
+                                                                @method('DELETE')
+                                                            @endif
+                                                        </form>
+                                                    @endcan
                                                    
 
                                                     @can('delete', $idea)
