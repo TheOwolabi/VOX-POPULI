@@ -26,7 +26,8 @@ class IdeaFormRequest extends FormRequest
         return [
             'topic' => 'required',
             'subtitle' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'categorie' => 'required'
         ];
     }
     
@@ -38,6 +39,7 @@ class IdeaFormRequest extends FormRequest
             'topic.required' => 'Expliquez brièvement votre idée',
             'subtitle.required' => 'Expliquez brièvement votre idée',
             'content.required' => 'Exposez votre idée avec force de détails',
+            'categorie.required' => "Merci d'indiquer dans quel cadre s'inscrit votre idée",
         ];
     }
 }

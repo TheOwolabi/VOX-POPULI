@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Traits;
+use App\Models\Image;
+use App\Models\Categorie;
+use Illuminate\Database\Eloquent\Model;
+
 class Idea extends Model
 {
     use Traits\Idea_helpers;
     public $timestamps = true;
 
-    protected $fillable = ['topic','content','likes','unlikes','subtitle','reactions','user_id'];
+    protected $fillable = ['topic','content','likes','unlikes','subtitle','reactions','user_id','image_id','categorie_id'];
     
     public function user()
     {
@@ -25,6 +28,28 @@ class Idea extends Model
     public function favorites()
     {
        return $this->morphToMany(User::class,'favorisable');
+    }
+    
+    public function categories()
+    {
+        return $this->morphToMany(Categorie::class,'categorisable');
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+    public function categorise($id)
+    {
+        $categorie = Categorie::find($id);
+
+        return $this->categories()->attach($categorie);
+    }
+
+    public function image()
+    {
+      return $this->hasOne(Image::class);
     }
    
 }

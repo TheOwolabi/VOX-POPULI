@@ -9,6 +9,22 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+div.row.no-gutters.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-md-250.position-relative:hover
+{  
+    box-shadow: 1px 1px 9px 0px #0f1e034d !important;
+    transition: .4s;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 body
 {
     font-weight: 200;

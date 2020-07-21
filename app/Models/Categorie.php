@@ -5,13 +5,15 @@ namespace App\Models;
 use App\Models\Idea;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Categorie extends Model
 {
-    protected $fillable=['path','idea_id'];
+    protected $fillable = ['name','description'];
+
     public $timestamps = true;
 
     public function ideas()
     {
-       return $this->belongsTo(Idea::class);
+        return $this->morphedByMany(Idea::class,'categorisable');
     }
+
 }

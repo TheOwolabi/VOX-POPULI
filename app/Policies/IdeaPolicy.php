@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Idea;
 use App\User;
+use App\Models\Idea;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class IdeaPolicy

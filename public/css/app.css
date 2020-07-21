@@ -1,15 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-div.popover-body {
-  border: solid 1px red;
+[class^=flaticon-]:before {
+  font-family: Flaticon;
+  font-size: 20px;
+  font-style: normal;
+  margin-right: 20px;
+  margin-left: 0px !important;
+  margin-bottom: 5px !important;
 }
 
 a.icon.favorite:hover {
-  color: #89cf1f;
+  color: #45df08;
 }
 
 a.icon.favorited {
-  color: #89cf1f;
+  color: #04d616;
 }
 
 a.icon.delete {
@@ -11010,6 +11015,22 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+div.row.no-gutters.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-md-250.position-relative:hover {
+  box-shadow: 1px 1px 9px 0px #0f1e034d !important;
+  transition: 0.4s;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
 
 body {

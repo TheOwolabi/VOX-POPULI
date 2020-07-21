@@ -28,6 +28,9 @@
                 <a class="dropdown-item" href="{{ route('metier.index') }}">
                     Métiers
                 </a>
+                <a class="dropdown-item" href="{{ route('categorie.index') }}">
+                    Catégories
+                </a>
                 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Idea;
+use App\Models\Categorie;
+use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
@@ -26,6 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $idea = new Idea;
-        return view('home',compact('idea'));
+        $categories = Categorie::all();
+
+        return view('home',compact(['idea','categories']));
     }
 }

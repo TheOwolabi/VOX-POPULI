@@ -55,6 +55,18 @@
         </main>
     </div>
 
+    {{-- <script>
+        function getFile() {
+            document.getElementById("upfile").click();
+        }
+        function sub(obj) {
+  var file = obj.value;
+  var fileName = file.split("\\");
+  document.getElementById("yourBtn").innerHTML = fileName[fileName.length - 1];
+  document.myForm.submit();
+  event.preventDefault();
+}
+    </script> --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="{{ asset('js/share.js') }}"></script>
     @include('notify::messages')

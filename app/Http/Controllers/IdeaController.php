@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\Image;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Requests\IdeaFormRequest;
 
@@ -25,8 +27,7 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        $idea = new Idea;
-       return view('idea.create',compact('idea'));
+        //    return view('idea.create',compact('idea'));
     }
 
     /**
@@ -35,15 +36,38 @@ class IdeaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(IdeaFormRequest $request)
-    {
-        Idea::create([
+    public function store(IdeaFormRequest  $request)
+    {    
+   
+        $idea = Idea::create([
             'topic' => $request->topic,
             'subtitle' => $request->subtitle,
             'content' => $request->content,
-            'user_id' => auth()->user()->id
-
+            'categorie_id' => $request->categorie,
+            'user_id' => auth()->user()->id,
+           
         ]);
+
+        if($request->cover)
+        {
+            $path = $request->file('cover')->store('uploads','public');
+
+            $image = Image::create([
+                'path' => $path,
+                'idea_id' => $idea->id
+            ]);
+
+            $idea->update([
+                'image_id' => $image->id
+            ]);
+        }
+    
+      
+
+       $idea->categorise($request->categorie);
+
+    
+
 
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
         return redirect()->route('index');
@@ -69,7 +93,9 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
-        return view('idea.edit',compact('idea'));
+        $categories = Categorie::all();
+
+        return view('idea.edit',compact(['idea','categories']));
     }
 
     /**
@@ -81,7 +107,30 @@ class IdeaController extends Controller
      */
     public function update(IdeaFormRequest $request, Idea $idea)
     {
-        $idea->update($request->all());
+        $idea->update([
+            'topic' => $request->topic,
+            'subtitle' => $request->subtitle,
+            'content' => $request->content,
+            'categorie_id' => $request->categorie,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        if($request->cover)
+        {
+            $path = $request->file('cover')->store('uploads','public');
+
+            $image = Image::create([
+                'path' => $path,
+                'idea_id' => $idea->id
+            ]);
+
+            $idea->update([
+                'image_id' => $image->id
+            ]);
+        }
+    
+
+       $idea->categorise($request->categorie);
 
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
 

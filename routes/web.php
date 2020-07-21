@@ -18,6 +18,7 @@ Route::resource('/', 'RootPagesController');
 Route::resource('/metier', 'MetiersController');
 Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
+Route::resource('/categorie', 'CategoriesController');
 Route::resource('/idea', 'IdeaController');
 Route::post('/idea/{idea}/vote','VoteIdeaController@store');
 Route::delete('/idea/{idea}/vote','VoteIdeaController@destroy');
