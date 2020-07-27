@@ -34,7 +34,7 @@
                         {!!Share::page(route('idea.show',$idea),'A découvrir !!!')->facebook()->twitter()->linkedin()->whatsapp();!!}
                         </div>
                         </div>
-                        <div class="p-2 col-md-10 my-auto"> 
+                        <div class="p-2 col-md-9 my-auto"> 
                             {{$idea->content}} 
                         </div>   
                         <div class="my-auto">
@@ -84,4 +84,54 @@
         </div>
     </div> 
 </div>   
+
+{{-- Creating comment form --}}
+@include('shared.comment._create')
+
+{{-- Displaying comments --}}
+<div class="mt-4 card-body offset-md-2 ">
+  @foreach ($comments as $comment)
+    <div class="row"> 
+        <div class="col-md-2 my-auto">
+            <div  class="float-right"> Profile </div> <br>
+            <div class="float-right"> {{ strtoupper($comment->idea->user->name)}} </div>
+        </div>
+        <div class="col-md-6 bg-white border p-0">
+            <div class="d-flex justify-content-center pt-2">
+                 <span class="">Editing</span>   
+            </div>
+            <hr>
+            <p class="p-2">
+                {{$comment->comment}}
+            </p>
+            <div class="card-footer">
+            </div>
+        </div>
+        <div class="ml-2 my-auto">
+            <a class="icon pour {{$idea->Votebuttons_state() == 'up' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
+            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
+                @csrf
+                <input type="hidden" name='vote' value="1">
+
+                @if($idea->Votebuttons_state())
+                    @method('DELETE')
+                @endif
+            </form>
+
+            <a class="icon contre {{$idea->Votebuttons_state() == 'down' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
+            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
+                @csrf
+                <input type="hidden" name='vote' value="-1">
+                
+                @if($idea->Votebuttons_state())
+                    @method('DELETE')
+                @endif
+            </form>
+        </div>
+        <br>
+    </div>
+  @endforeach
+</div>
+
+
 @endsection

@@ -20,6 +20,7 @@ Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
 Route::resource('/categorie', 'CategoriesController');
 Route::resource('/idea', 'IdeaController');
+Route::resource('idea.comment', 'CommentsController');
 Route::post('/idea/{idea}/vote','VoteIdeaController@store');
 Route::delete('/idea/{idea}/vote','VoteIdeaController@destroy');
 Route::post('/idea/{idea}/favorite','FavoriteIdeaController@store');

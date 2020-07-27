@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use App\Models\Image;
+use App\Models\Comment;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Requests\IdeaFormRequest;
@@ -54,6 +55,7 @@ class IdeaController extends Controller
 
             $image = Image::create([
                 'path' => $path,
+                'user_id' => auth()->user()->id,  
                 'idea_id' => $idea->id
             ]);
 
@@ -65,10 +67,6 @@ class IdeaController extends Controller
       
 
        $idea->categorise($request->categorie);
-
-    
-
-
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
         return redirect()->route('index');
 
@@ -82,7 +80,9 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
-        return view('idea.show',compact('idea'));
+        $comments = Comment::where('idea_id',$idea->id)->get()->reverse();
+      
+        return view('idea.show',compact(['idea','comments']));
     }
 
     /**
@@ -119,14 +119,19 @@ class IdeaController extends Controller
         {
             $path = $request->file('cover')->store('uploads','public');
 
+            
+
             $image = Image::create([
                 'path' => $path,
+                'user_id' => auth()->user()->id,  
                 'idea_id' => $idea->id
             ]);
+
 
             $idea->update([
                 'image_id' => $image->id
             ]);
+
         }
     
 
