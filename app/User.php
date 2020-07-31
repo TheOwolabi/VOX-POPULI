@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Traits;
+use App\Models\Idea;
 use App\Models\Metier;
+use App\Models\Comment;
 use App\Models\Commune;
 use App\Models\Officiel;
-use App\Models\Idea;
-use App\Traits;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 class User extends Authenticatable
@@ -74,6 +75,24 @@ class User extends Authenticatable
     public function favoriteIdeas()
     {
        return $this->morphedByMany(Idea::class,'favorisable');
+    }
+
+    public function Votecomments()
+    {
+        return $this->MorphedByMany(Comment::class,'votable');
+    }
+
+    public function VoteCom(Comment $comment, $vote)
+    {
+        if($this->Votecomments()->where('votable_id',$comment->id)->exists())
+        {
+            $this->Votecomments()->updateExistingPivot($comment,['value' => $vote]);
+        }
+        else
+        {
+            $this->Votecomments()->attach($comment,['value' => $vote]);
+        }
+
     }
     
 }

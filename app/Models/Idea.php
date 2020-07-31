@@ -5,6 +5,7 @@ namespace App\Models;
 use App\User;
 use App\Traits;
 use App\Models\Image;
+use App\Models\Comment;
 use App\Models\Categorie;
 use Illuminate\Database\Eloquent\Model;
 

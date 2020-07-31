@@ -96,11 +96,11 @@
             <div  class="float-right"> Profile </div> <br>
             <div class="float-right"> {{ strtoupper($comment->idea->user->name)}} </div>
         </div>
-        <div class="col-md-6 bg-white border p-0">
-            <div class="d-flex justify-content-center pt-2">
+        <div class="col-md-6 bg-white border p-0 shadow-sm">
+            <div class="border-bottom d-flex justify-content-center my-auto">
                  <span class="">Editing</span>   
             </div>
-            <hr>
+           
             <p class="p-2">
                 {{$comment->comment}}
             </p>
@@ -108,22 +108,22 @@
             </div>
         </div>
         <div class="ml-2 my-auto">
-            <a class="icon pour {{$idea->Votebuttons_state() == 'up' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
-            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
+            <a class="icon pour {{$comment->Votebuttons_state() == 'up' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$comment->id}}').submit();"><i class="flaticon-like"></i></a>
+            <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" id="upvote-form-{{$comment->id}}" method="post">
                 @csrf
                 <input type="hidden" name='vote' value="1">
 
-                @if($idea->Votebuttons_state())
+                @if($comment->Votebuttons_state())
                     @method('DELETE')
                 @endif
             </form>
 
-            <a class="icon contre {{$idea->Votebuttons_state() == 'down' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','contre')}}" href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$idea->id}}').submit();"><i class="flaticon-dislike"></i></a>
-            <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="downvote-form-{{$idea->id}}" method="post">
+            <a class="icon contre {{$comment->Votebuttons_state() == 'down' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$comment->id}}').submit();"><i class="flaticon-dislike"></i></a>
+            <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" style="display: none;" id="downvote-form-{{$comment->id}}" method="post">
                 @csrf
                 <input type="hidden" name='vote' value="-1">
                 
-                @if($idea->Votebuttons_state())
+                @if($comment->Votebuttons_state())
                     @method('DELETE')
                 @endif
             </form>
