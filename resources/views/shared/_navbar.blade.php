@@ -24,6 +24,9 @@
                 </a>
                 <a class="dropdown-item" href="{{ route('poste.index') }}">
                     Postes
+                </a> 
+                <a class="dropdown-item" href="{{ route('actualite.index') }}">
+                    Actualites
                 </a>
                 <a class="dropdown-item" href="{{ route('metier.index') }}">
                     Métiers

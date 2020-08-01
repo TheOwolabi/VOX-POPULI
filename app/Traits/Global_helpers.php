@@ -32,4 +32,24 @@ trait Global_helpers
         }
     }
 
+    public function _vbs($pointer)
+    {
+        if(auth()->user())
+        {
+          
+            if($pointer->where('user_id',auth()->user()->id)->exists())
+            {
+                if($pointer->where('user_id',auth()->user()->id)->first()->pivot->value == -1)
+                {
+                    return 'down';
+                }
+                elseif($pointer->where('user_id',auth()->user()->id)->first()->pivot->value == 1)
+                {
+                    return 'up';
+                }
+            }
+           
+        }
+    }
+
 }

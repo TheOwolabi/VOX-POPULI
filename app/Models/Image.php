@@ -14,4 +14,9 @@ class Image extends Model
     {
        return $this->belongsTo(Idea::class);
     }
+
+    public function actualites()
+    {
+       return $this->belongsTo(Actualite::class);
+    }
 }

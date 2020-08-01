@@ -18,7 +18,9 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        //
+        $actualites = Actualite::all()->reverse();
+
+        return view('actualite.all',compact('actualites'));
     }
 
     /**
@@ -68,7 +70,7 @@ class IdeaController extends Controller
 
        $idea->categorise($request->categorie);
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
-        return redirect()->route('index');
+        return redirect()->route('actualite.index');
 
     }
 

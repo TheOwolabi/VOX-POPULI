@@ -8,6 +8,7 @@ use App\Models\Metier;
 use App\Models\Comment;
 use App\Models\Commune;
 use App\Models\Officiel;
+use App\Models\Actualite;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -70,6 +71,11 @@ class User extends Authenticatable
     public function voteIdeas()
     {
        return $this->morphedByMany(Idea::class,'votable')->withPivot('value');
+    }
+
+    public function voteActualites()
+    {
+       return $this->morphedByMany(Actualite::class,'votable')->withPivot('value');
     }
 
     public function favoriteIdeas()

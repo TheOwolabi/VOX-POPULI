@@ -7,7 +7,7 @@
             @if ($model == 'idea')
              <a href="{{route('home')}}" class="btn btn-success">AJOUTER {{$btn}}</a>    
             @else
-            <a href="/{{$model}}/create" class="btn btn-success">AJOUTER {{$btn}}</a>  
+            <a href="{{$model}}/create" class="btn btn-success">AJOUTER {{$btn}}</a>  
             @endif
         </p>
     </div>

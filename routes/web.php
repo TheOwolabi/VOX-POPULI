@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', 'RootPagesController');
 
 Route::resource('/metier', 'MetiersController');
+Route::resource('/actualite', 'ActualiteController');
 Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
 Route::resource('/categorie', 'CategoriesController');
