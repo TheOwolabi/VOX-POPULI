@@ -78,14 +78,24 @@ class User extends Authenticatable
        return $this->morphedByMany(Actualite::class,'votable')->withPivot('value');
     }
 
+    public function VoteA(Actualite $actualite, $vote)
+    {
+        return $this->_vote($this->voteActualites(), $actualite, $vote);
+    }
+
     public function favoriteIdeas()
     {
        return $this->morphedByMany(Idea::class,'favorisable');
     }
 
+    public function favoriteActualites()
+    {
+       return $this->morphedByMany(Actualite::class,'favorisable');
+    }
+
     public function Votecomments()
     {
-        return $this->MorphedByMany(Comment::class,'votable');
+        return $this->morphedByMany(Comment::class,'votable');
     }
 
     public function VoteCom(Comment $comment, $vote)

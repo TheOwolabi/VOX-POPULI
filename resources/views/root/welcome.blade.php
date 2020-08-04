@@ -158,8 +158,8 @@
                                     </div>
     
                                     <h3 class="mb-0"> 
-                                        @if(strlen($idea->topic) > 30)
-                                         <a href="{{route('idea.show',$idea)}}"> {{substr($idea->topic, 0, 33) . '...'}} </a>  
+                                        @if(strlen($idea->topic) > 24)
+                                         <a href="{{route('idea.show',$idea)}}"> {{substr($idea->topic, 0, 25) . '...'}} </a>  
                                         @else
                                          <a href="{{route('idea.show',$idea)}}"> {{$idea->topic}} </a>
                                         @endif   
@@ -178,16 +178,16 @@
                                             </div>   
                                             <div class="my-auto">
                                                 <div class="mx-auto">
-                                                    @can('favorite', $idea)
-                                                        <a href="" class="icon favorite {{$idea->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$idea->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
-                                    
-                                                        <form id="favorite-{{$idea->id}}" action="/idea/{{$idea->id}}/favorite" style="display:none;" method="post">
-                                                            @csrf
-                                                            @if($idea->isFavorited())
-                                                                @method('DELETE')
-                                                            @endif
-                                                        </form>
-                                                    @endcan
+                                                   
+                                                    <a href="" class="icon favorite {{$idea->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$idea->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
+                                
+                                                    <form id="favorite-{{$idea->id}}" action="/idea/{{$idea->id}}/favorite" style="display:none;" method="post">
+                                                        @csrf
+                                                        @if($idea->isFavorited())
+                                                            @method('DELETE')
+                                                        @endif
+                                                    </form>
+                                                   
                                                 <a class="icon pour {{$idea->Votebuttons_state() == 'up' ? $idea->Votebuttons_state() : "" }}" title="{{$idea->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$idea->id}}').submit();"><i class="flaticon-like"></i></a>
                                                 <form action="/idea/{{$idea->id}}/vote" style="display: none;" id="upvote-form-{{$idea->id}}" method="post">
                                                     @csrf
@@ -220,7 +220,7 @@
                                 </div>
                                 @if ($idea->image_id)
                                     <div class="col-auto d-none d-lg-block">
-                                        <a href="{{route('idea.show',$idea)}}"> <img  width="200" height="340" src="{{ asset('storage/'.$idea->image->path)}}" alt="n">  </a>
+                                        <a href="{{route('idea.show',$idea)}}"> <img  width="200" height="360" src="{{ asset('storage/'.$idea->path())}}" alt="n">  </a>
                                     </div>  
                                 @endif
                             </div>

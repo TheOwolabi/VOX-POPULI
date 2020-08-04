@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\User;
-use App\Models\Image;
-use Illuminate\Database\Eloquent\Model;
 use App\Traits;
+use App\Models\Image;
+use App\Models\Categorie;
+use Illuminate\Database\Eloquent\Model;
 
 class Actualite extends Model
 {
@@ -17,10 +18,24 @@ class Actualite extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function categorie()
+    {
+       return $this->belongsTo(Categorie::class);
+    }
+    
     public function image()
     {
-        return $this->hasOne(Image::class);
+       return $this->morphToMany(Image::class,'imageable');
+    }
+
+    public function path()
+    {
+        return $this->image()->where('image_id',$this->image_id)->first()->path;
+    }
+
+    public function favorites()
+    {
+       return $this->morphToMany(User::class,'favorisable');
     }
 
     public function votes()
@@ -38,11 +53,6 @@ class Actualite extends Model
         return  $this->votes()->wherePivot('value',1);
     }
 
-    public function VoteA(Actualite $actualite, $vote)
-    {
-        return $this->_vote($this->voteActualites(), $actualite, $vote);
-    }
-
     public function counter($param, $value)
     {
         return $this->_counter($this->votes, $param, $value);
@@ -51,5 +61,20 @@ class Actualite extends Model
     public function Votebuttons_state()
     {
         return $this->_vbs($this->votes());
+    }
+
+    public function isFavorited()
+    {
+        if(auth()->user())
+        {
+            if($this->favorites()->where('user_id',auth()->user()->id)->exists())
+            {
+                return "favorited";
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

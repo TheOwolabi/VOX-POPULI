@@ -53,14 +53,17 @@ class IdeaController extends Controller
 
         if($request->cover)
         {
+
             $path = $request->file('cover')->store('uploads','public');
 
             $image = Image::create([
                 'path' => $path,
                 'user_id' => auth()->user()->id,  
-                'idea_id' => $idea->id
             ]);
+            
+            $image->attributeToIdea($idea);
 
+            
             $idea->update([
                 'image_id' => $image->id
             ]);
@@ -70,7 +73,7 @@ class IdeaController extends Controller
 
        $idea->categorise($request->categorie);
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
-        return redirect()->route('actualite.index');
+        return redirect()->route('index');
 
     }
 
@@ -122,13 +125,12 @@ class IdeaController extends Controller
             $path = $request->file('cover')->store('uploads','public');
 
             
-
             $image = Image::create([
                 'path' => $path,
                 'user_id' => auth()->user()->id,  
-                'idea_id' => $idea->id
             ]);
-
+            
+            $image->attributeToIdea($idea);
 
             $idea->update([
                 'image_id' => $image->id

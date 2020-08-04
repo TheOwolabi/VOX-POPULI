@@ -12,9 +12,9 @@ class Comment extends Model
     public $timestamps = true;
 
 
-    public function idea()
+    public function user()
     {
-       return $this->belongsTo(Idea::class);
+       return $this->belongsTo(User::class);
     }
 
     public function votes()

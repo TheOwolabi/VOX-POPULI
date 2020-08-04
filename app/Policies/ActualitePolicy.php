@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Actualite;
 use App\User;
-use App\Models\Idea;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class IdeaPolicy
+class ActualitePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,13 @@ class IdeaPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Actualite  $actualite
      * @return mixed
      */
-
+    public function view(User $user, Actualite $actualite)
+    {
+        //
+    }
 
     /**
      * Determine whether the user can create models.
@@ -45,34 +48,34 @@ class IdeaPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Actualite  $actualite
      * @return mixed
      */
-    public function update(User $user, Idea $idea)
+    public function update(User $user, Actualite $actualite)
     {
-        return $user->id == $idea->user_id;
+        return $user->id == $actualite->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Actualite  $actualite
      * @return mixed
      */
-    public function delete(User $user, Idea $idea)
+    public function delete(User $user, Actualite $actualite)
     {
-        return $user->id == $idea->user_id;
+        return $user->id == $actualite->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Actualite  $actualite
      * @return mixed
      */
-    public function restore(User $user, Idea $idea)
+    public function restore(User $user, Actualite $actualite)
     {
         //
     }
@@ -81,10 +84,10 @@ class IdeaPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Actualite  $actualite
      * @return mixed
      */
-    public function forceDelete(User $user, Idea $idea)
+    public function forceDelete(User $user, Actualite $actualite)
     {
         //
     }

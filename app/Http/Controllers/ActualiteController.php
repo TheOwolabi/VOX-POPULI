@@ -34,6 +34,13 @@ class ActualiteController extends Controller
         return view('actualite.create',compact(['actualite','categories']));
     }
 
+
+    public function edit(Actualite $actualite)
+    {
+        $categories = Categorie::all();
+        return view('actualite.edit',compact(['actualite','categories']));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,18 +59,19 @@ class ActualiteController extends Controller
              'user_id' => auth()->user()->id
             ]);
 
-            Actualite::create([
+            $actualite = Actualite::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'user_id' => auth()->user()->id,
                 'categorie_id' => $request->categorie,
-
                 'image_id' => $image->id,
             ]);
+
+            $image->attributeToActualite($actualite);
+
         }
         else
         {
-
             Actualite::create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -77,28 +85,7 @@ class ActualiteController extends Controller
   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Actualite  $actualite
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Actualite $actualite)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Actualite  $actualite
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Actualite $actualite)
-    {
-        //
-    }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -108,7 +95,40 @@ class ActualiteController extends Controller
      */
     public function update(ActualiteFormRequest $request, Actualite $actualite)
     {
-        //
+        
+        if($request->hasFile('cover'))
+        {
+            $path = $request->file('cover')->store('uploads','public');
+
+            $image = Image::create([
+             'path' => $path,
+             'user_id' => auth()->user()->id
+            ]);
+
+            $actualite->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'user_id' => auth()->user()->id,
+                'categorie_id' => $request->categorie,
+                'image_id' => $image->id,
+            ]);
+
+            $image->attributeToActualite($actualite);
+
+        }
+        else
+        {
+            $actualite->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'user_id' => auth()->user()->id,
+                'categorie_id' => $request->categorie,
+            ]);  
+        }
+
+        notify()->success("Actualité bien mise à jour");
+        return redirect()->route('actualite.index');
+
     }
 
     /**
@@ -119,6 +139,9 @@ class ActualiteController extends Controller
      */
     public function destroy(Actualite $actualite)
     {
-        //
+        $actualite->delete();
+
+        notify()->success("Actualité supprimée ");
+        return redirect()->route('actualite.index');
     }
 }

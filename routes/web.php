@@ -26,8 +26,12 @@ Route::post('/idea/{idea}/vote','VoteIdeaController@store');
 Route::delete('/idea/{idea}/vote','VoteIdeaController@destroy');
 Route::post('/idea/{idea}/favorite','FavoriteIdeaController@store');
 Route::delete('/idea/{idea}/favorite','FavoriteIdeaController@destroy');
+Route::post('/actualite/{actualite}/favorite','FavoriteActualiteController@store');
+Route::delete('/actualite/{actualite}/favorite','FavoriteActualiteController@destroy');
 Route::post('/idea/{idea}/comment/{comment}/vote','VoteIdeaCommentsController@store');
 Route::delete('/idea/{idea}/comment/{comment}/vote','VoteIdeaCommentsController@destroy');
+Route::post('/actualite/{actualite}/vote','VoteActualiteController@store');
+Route::delete('/actualite/{actualite}/vote','VoteActualiteController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

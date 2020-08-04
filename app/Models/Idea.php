@@ -50,11 +50,16 @@ class Idea extends Model
 
     public function image()
     {
-      return $this->hasOne(Image::class);
+       return $this->morphToMany(Image::class,'imageable');
+    }
+
+    public function path()
+    {
+        return $this->image()->where('image_id',$this->image_id)->first()->path;
     }
    
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphToMany(User::class,'comment')->withPivot('comment');
     }
 }

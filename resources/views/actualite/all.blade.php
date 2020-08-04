@@ -52,16 +52,16 @@
                                 </div>   
                                 <div class="my-auto">
                                     <div class="mx-auto">
-                                        @can('favorite', $actualite)
-                                            <a href="" class="icon favorite {{$actualite->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$actualite->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
-                        
-                                            <form id="favorite-{{$actualite->id}}" action="/actualite/{{$actualite->id}}/favorite" style="display:none;" method="post">
-                                                @csrf
-                                                @if($actualite->isFavorited())
-                                                    @method('DELETE')
-                                                @endif
-                                            </form>
-                                        @endcan
+                                       
+                                        <a href="" class="icon favorite {{$actualite->isFavorited()}}" onclick="event.preventDefault(); document.getElementById('favorite-{{$actualite->id}}').submit();"> <i class="flaticon-favourite"></i> </a>
+                    
+                                        <form id="favorite-{{$actualite->id}}" action="/actualite/{{$actualite->id}}/favorite" style="display:none;" method="post">
+                                            @csrf
+                                            @if($actualite->isFavorited())
+                                                @method('DELETE')
+                                            @endif
+                                        </form>
+                                      
                                         <a class="icon pour {{$actualite->Votebuttons_state() == 'up' ? $actualite->Votebuttons_state() : "" }}" title="{{$actualite->counter('vote','pour')}}" href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$actualite->id}}').submit();"><i class="flaticon-like"></i></a>
                                         <form action="/actualite/{{$actualite->id}}/vote" style="display: none;" id="upvote-form-{{$actualite->id}}" method="post">
                                             @csrf
@@ -94,7 +94,7 @@
                         </div>
                         @if ($actualite->image_id)
                             <div class="col-auto d-none d-lg-block">
-                                <a href="{{route('actualite.show',$actualite)}}"> <img  width="200" height="340" src="{{ asset('storage/'.$actualite->image->path)}}" alt="n">  </a>
+                                <a href="{{route('actualite.show',$actualite)}}"> <img  width="200" height="360" src="{{ asset('storage/'.$actualite->path())}}" alt="n">  </a>
                             </div>  
                         @endif
                     </div>
