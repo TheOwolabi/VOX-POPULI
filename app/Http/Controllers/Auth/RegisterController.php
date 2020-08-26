@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use vonage;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Metier;
 use App\Models\Commune;
-use App\Traits\RegisteringValidation;
-
+use Nexmo\Laravel\Facade\Nexmo;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Traits\RegisteringValidation;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 
 
@@ -35,7 +36,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/vonage';
 
     /**
      * Create a new controller instance.
@@ -62,6 +63,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $verification = Nexmo::verify()->start([
+            'number' => $data['tel'],
+            'brand' => 'Vox-Populi'
+        ]);
+
+        session(['nexmo_request_id' => $verification->getRequestId()]);
 
        $user = User::create([
             'name' => $data['name'],

@@ -60,6 +60,6 @@ class Idea extends Model
    
     public function comments()
     {
-        return $this->morphToMany(User::class,'comment')->withPivot('comment');
+        return $this->morphToMany(User::class,'commentable')->withPivot('comment_id');
     }
 }

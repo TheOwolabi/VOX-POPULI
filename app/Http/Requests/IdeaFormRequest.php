@@ -33,7 +33,7 @@ class IdeaFormRequest extends FormRequest
     
     public function messages()
     {
-        notify()->error('Ooops ! Il y a eu un problème ...');
+        // notify()->error('Ooops ! Il y a eu un problème ...');
 
         return [
             'topic.required' => 'Expliquez brièvement votre idée',

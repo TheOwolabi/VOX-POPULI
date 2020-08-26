@@ -85,9 +85,13 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
-        $comments = Comment::where('idea_id',$idea->id)->get()->reverse();
+        $os = $idea->comments()->where('commentable_id',$idea->id)->get();
+        dd($os);
+        foreach($os as $o){dd($o->pivot->comment_id);}
+
+        $commentators = $idea->comments()->where('commentable_id',$idea->id)->get()->reverse();
       
-        return view('idea.show',compact(['idea','comments']));
+        return view('idea.show',compact(['idea','commentators']));
     }
 
     /**

@@ -90,11 +90,11 @@
 
 {{-- Displaying comments --}}
 <div class="mt-4 card-body offset-md-2 ">
-  @foreach ($comments as $comment)
+  @foreach ($commentators as $commentator)
     <div class="row"> 
         <div class="col-md-2 my-auto">
             <div  class="float-right"> Profile </div> <br>
-            <div class="float-right"> {{ strtoupper($comment->idea->user->name)}} </div>
+            <div class="float-right"> {{ strtoupper($commentator->name)}} </div>
         </div>
         <div class="col-md-6 bg-white border p-0 shadow-sm">
             <div class="border-bottom d-flex justify-content-center my-auto">
@@ -102,12 +102,12 @@
             </div>
            
             <p class="p-2">
-                {{$comment->comment}}
+                {{$commentator->pivot->comment}}
             </p>
             <div class="card-footer">
             </div>
         </div>
-        <div class="ml-2 my-auto">
+        {{-- <div class="ml-2 my-auto">
             <a class="icon pour {{$comment->Votebuttons_state() == 'up' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$comment->id}}').submit();"><i class="flaticon-like"></i></a>
             <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" id="upvote-form-{{$comment->id}}" method="post">
                 @csrf
@@ -127,7 +127,7 @@
                     @method('DELETE')
                 @endif
             </form>
-        </div>
+        </div> --}}
         <br>
     </div>
   @endforeach

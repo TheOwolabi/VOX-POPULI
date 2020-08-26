@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public $fillable = ['comment','idea_id'];
+    public $fillable = ['comment','user_id'];
     public $timestamps = true;
 
 

@@ -7,7 +7,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentFormRequest;
 
-class CommentsController extends Controller
+class IdeaCommentsController extends Controller
 {
     public function __construct()
     {
@@ -41,23 +41,23 @@ class CommentsController extends Controller
      */
     public function store(CommentFormRequest $request, Idea $idea)
     {
-       Comment::create([
+       $comment = Comment::create([
             'comment' => $request->comment,
-            'idea_id' => $idea->id
-       ]);
+            'user_id' =>auth()->user()->id
+        ]);
 
-       notify()->success('Commentaire ajouté. Merci de contribuer ! ');
+        auth()->user()->commentIdea($idea, $comment->id);
 
-       return back();
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Idea $idea)
     {
         //
     }
@@ -65,10 +65,10 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Idea $idea)
     {
         //
     }
@@ -77,10 +77,10 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Idea $idea)
     {
         //
     }
@@ -88,11 +88,14 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Idea $idea)
     {
-        //
+        auth()->user()->commentIdeas()->dettach($idea);
+
+        notify()->success('Commentaire bien supprimé ...');
+        return back();
     }
 }

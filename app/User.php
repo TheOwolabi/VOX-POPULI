@@ -47,6 +47,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'tel_verified_at' => 'datetime',
     ];
 
     public function commune()
@@ -91,6 +92,16 @@ class User extends Authenticatable
     public function favoriteActualites()
     {
        return $this->morphedByMany(Actualite::class,'favorisable');
+    }
+
+    public function commentIdeas()
+    {
+        return $this->morphedByMany(Idea::class,'commentable');
+    }
+
+    public function commentIdea(Idea $idea, $comment)
+    {
+        $this->commentIdeas()->attach($idea,['comment_id'=> $comment]);
     }
 
     public function Votecomments()

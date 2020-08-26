@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', 'RootPagesController');
+Route::get('/vonage', 'NexmoController@show')->name('vonage');
+Route::post('/vonage', 'NexmoController@verify')->name('vonage');
 
 Route::resource('/metier', 'MetiersController');
 Route::resource('/actualite', 'ActualiteController');
@@ -21,7 +23,7 @@ Route::resource('/officiel', 'OfficielController');
 Route::resource('/poste', 'PostesController');
 Route::resource('/categorie', 'CategoriesController');
 Route::resource('/idea', 'IdeaController');
-Route::resource('idea.comment', 'CommentsController');
+Route::resource('idea.comment', 'IdeaCommentsController');
 Route::post('/idea/{idea}/vote','VoteIdeaController@store');
 Route::delete('/idea/{idea}/vote','VoteIdeaController@destroy');
 Route::post('/idea/{idea}/favorite','FavoriteIdeaController@store');
