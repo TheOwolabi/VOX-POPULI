@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NexmoController extends Controller
 {
@@ -27,9 +29,7 @@ class NexmoController extends Controller
         
             // dd(date_format($date, 'Y-m-d H:i:s'));
 
-        $user->update([
-            'tel_verified_at' => date_format($date, 'Y-m-d H:i:s')
-        ]);
+            DB::table('users')->where('id', Auth::id())->update(['tel_verified_at' => date_format($date, 'Y-m-d H:i:s')]);
 
         // dd($user);
         return redirect('/home');
