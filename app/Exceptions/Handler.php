@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // dd($exception);
+        if($exception instanceof \Nexmo\Client\Exception\Request)
+        {
+            return back()->with('$message', 'Failed to find that resource');
+        }
+    
         return parent::render($request, $exception);
     }
 }

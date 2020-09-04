@@ -6,6 +6,8 @@ use Auth;
 use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\DB;
+use Nexmo\Verify\ExceptionErrorHandler;
+use Illuminate\Validation\ValidationException;
 
 class NexmoController extends Controller
 {
@@ -16,7 +18,7 @@ class NexmoController extends Controller
 
    public function verify(Request $request)
    {
-       $this->validate([
+       $this->validate($request,[
            'code' => 'size:4'
        ]);
 
@@ -24,10 +26,11 @@ class NexmoController extends Controller
        $verification = new \Nexmo\Verify\Verification($request_id); 
 
        Nexmo::verify()->check($verification, $request->code);
-
+        
        $date = date_create();
 
-       DB::table('users')->where('id', Auth::id())->update(['tel_verified_at' => date_format($date, 'Y-m-d H:i:s')]);
-       return redirect('/home');
+        DB::table('users')->where('id', Auth::id())->update(['tel_verified_at' => date_format($date, 'Y-m-d H:i:s')]);
+        return redirect('/home');
+        
    }
 }
