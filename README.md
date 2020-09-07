@@ -14,5 +14,43 @@ Vox-Populi offers a bunch of possibilities such as :
 
 and many more awesome features to come ...
 
-## Installing Vox-Populi
-To come ASAP ! 
+---
+
+# To get started  
+Vox-Populi's code is essentially written in PHP using the LARAVEL framework. As database system, we use MySQL.
+
+## Prerequisites
+- [COMPOSER](https://getcomposer.org) 
+
+You may install LARAVEL framework from composer by running ``` composer global require laravel/installer ``` 
+- [LARAVEL](https://laravel.com/docs/7.x/installation) (Please, check this link for more detailed explanations on installing the LARAVEL framework)
+
+- [Node.js](https://nodejs.org/en/)
+- [XAMPP](https://www.apachefriends.org/fr/index.html) (be carefull to choose the good version depending on your OS)
+- [VONAGE](https://dashboard.nexmo.com/sign-up) : Create an account in order to use sms verification 
+
+## Launch Vox-Populi
+### Configure ```.env``` file 
+```
+APP_NAME=VOX-POPULI
+
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=populi
+DB_USERNAME=root
+DB_PASSWORD=
+
+NEXMO_KEY = (find in your VONAGE dashboard, Getting Started section)
+NEXMO_SECRET = (find in your VONAGE dashboard, Getting Started section)
+```
+**Create a MySQL database called ``populi``**
+
+**Run all the migration with** 
+``php artisan migrate``
+
+**Once you're all set, from your locally forked directory, run** 
+```
+php artisan serve
+```
