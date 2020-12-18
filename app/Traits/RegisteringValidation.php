@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+
 use Illuminate\Support\Facades\Validator;
 
 
@@ -15,23 +16,21 @@ trait RegisteringValidation
             'password.confirmed' => 'Les deux mots de passe ne sont pas identiques'
         ];
 
-        if(!empty($data['descr']))
-        {
-           return Validator::make($data, [
+        if (!empty($data['descr'])) {
+            return Validator::make($data, [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'tel' => ['required','digits:11'],
+                'tel' => ['required', 'digits:11'],
                 'title' => ['required'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
-           ], $messages); 
+            ], $messages);
         }
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'tel' => ['required','digits:11'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tel' => ['required', 'digits:11'],
+            'password' => ['required', 'string', 'min:1', 'confirmed'],
         ], $messages);
     }
-
 }

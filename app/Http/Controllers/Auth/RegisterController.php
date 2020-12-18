@@ -36,7 +36,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/verification';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -63,12 +63,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $verification = Nexmo::verify()->start([
-            'number' => $data['tel'],
-            'brand' => 'VOX-POPULI'
-        ]);
+        // $verification = Nexmo::verify()->start([
+        //     'number' => $data['tel'],
+        //     'brand' => 'VOX-POPULI'
+        // ]);
 
-        session(['nexmo_request_id' => $verification->getRequestId()]);
+        // session(['nexmo_request_id' => $verification->getRequestId()]);
 
        $user = User::create([
             'name' => $data['name'],

@@ -24,6 +24,19 @@
                     <div class="float-left">
                        <h3 class="mb-0"> <a href="{{route('idea.show',$idea)}}">{{$idea->topic}} </a> </h3> 
                     </div>
+                    <div class="d-flex justify-content-center">
+                        @if($idea->status === 'rejeté')
+                            <a href="#"  class="btn btn-reject">Non approuvée</a>
+                        @endif 
+
+                        @if($idea->status === 'traitement')
+                        <a href="#"  class="btn btn-gold">Traitement en cours</a>
+                        @endif 
+
+                        @if($idea->status === 'validée')
+                        <a href="#"  class="btn btn-validated">Approuvée</a>
+                        @endif  
+                     </div>
                 </div>
 
                 <div class="mb-1 text-muted">Nov 12</div>
@@ -86,7 +99,7 @@
 </div>   
 
 {{-- Creating comment form --}}
-@include('shared.comment._create')
+@include('shared.comment._create') 
 
 {{-- Displaying comments --}}
 <div class="mt-4 card-body offset-md-2 ">
@@ -94,7 +107,7 @@
     <div class="row"> 
         <div class="col-md-2 my-auto">
             <div  class="float-right"> Profile </div> <br>
-            <div class="float-right"> {{ strtoupper($comment->idea->user->name)}} </div>
+            <div class="float-right"> {{ strtoupper($comment->user->name)}} </div>
         </div>
         <div class="col-md-6 bg-white border p-0 shadow-sm">
             <div class="border-bottom d-flex justify-content-center my-auto">

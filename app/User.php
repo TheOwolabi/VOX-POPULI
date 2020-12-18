@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','tel','metier_id',
+        'name', 'email', 'password', 'tel', 'metier_id',
     ];
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function metiers()
     {
-      return $this->hasMany(Metier::class);
+        return $this->hasMany(Metier::class);
     }
 
     public function officiel()
@@ -70,12 +70,17 @@ class User extends Authenticatable
 
     public function voteIdeas()
     {
-       return $this->morphedByMany(Idea::class,'votable')->withPivot('value');
+        return $this->morphedByMany(Idea::class, 'votable')->withPivot('value');
+    }
+
+    public function commentIdeas()
+    {
+        return $this->morphedByMany(Idea::class, 'commentable')->withPivot('comment');
     }
 
     public function voteActualites()
     {
-       return $this->morphedByMany(Actualite::class,'votable')->withPivot('value');
+        return $this->morphedByMany(Actualite::class, 'votable')->withPivot('value');
     }
 
     public function VoteA(Actualite $actualite, $vote)
@@ -85,30 +90,43 @@ class User extends Authenticatable
 
     public function favoriteIdeas()
     {
-       return $this->morphedByMany(Idea::class,'favorisable');
+        return $this->morphedByMany(Idea::class, 'favorisable');
     }
 
     public function favoriteActualites()
     {
-       return $this->morphedByMany(Actualite::class,'favorisable');
+        return $this->morphedByMany(Actualite::class, 'favorisable');
     }
 
     public function Votecomments()
     {
-        return $this->morphedByMany(Comment::class,'votable');
+        return $this->morphedByMany(Comment::class, 'votable');
     }
 
     public function VoteCom(Comment $comment, $vote)
     {
-        if($this->Votecomments()->where('votable_id',$comment->id)->exists())
-        {
-            $this->Votecomments()->updateExistingPivot($comment,['value' => $vote]);
+        if ($this->Votecomments()->where('votable_id', $comment->id)->exists()) {
+            $this->Votecomments()->updateExistingPivot($comment, ['value' => $vote]);
+        } else {
+            $this->Votecomments()->attach($comment, ['value' => $vote]);
         }
-        else
-        {
-            $this->Votecomments()->attach($comment,['value' => $vote]);
-        }
-
     }
-    
+
+    public function _comment($pointer, $model, $comment)
+    {
+      
+       $pointer->attach(
+        $model,
+        ['comment' => $comment, 
+        "created_at" =>  date('Y-m-d H:i:s'),
+        "updated_at" => date('Y-m-d H:i:s'), 
+        ]);
+     
+     
+    }
+
+    public function commentI(Idea $idea, $comment)
+    {
+        return $this->_comment($this->commentIdeas(), $idea, $comment);
+    }
 }

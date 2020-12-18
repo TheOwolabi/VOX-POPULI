@@ -15,7 +15,6 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -163,6 +162,18 @@
                                         @else
                                          <a href="{{route('idea.show',$idea)}}"> {{$idea->topic}} </a>
                                         @endif   
+
+                                        @if($idea->status === 'rejeté')
+                                            <a href="#"  class="btn btn-reject">Non approuvée</a>
+                                        @endif 
+
+                                        @if($idea->status === 'traitement')
+                                        <a href="#"  class="btn btn-gold">Traitement en cours</a>
+                                        @endif 
+
+                                        @if($idea->status === 'validée')
+                                        <a href="#"  class="btn btn-validated">Approuvée</a>
+                                        @endif 
                                     </h3>
 
                                     <div class="mb-1 text-muted">Nov 12</div>

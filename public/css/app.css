@@ -11049,7 +11049,6 @@ thead {
 }
 
 tbody:hover {
-  background-color: white;
   font-size: 17px;
   font-weight: 500;
   transition: 0.5s;
@@ -11089,5 +11088,41 @@ a:hover {
   background-color: #41790b;
   font-size: 17px;
   transition: 0.3s;
+}
+
+.btn-gold {
+  background-color: #eece1b !important;
+  color: white !important;
+}
+
+.btn-gold:hover {
+  color: white !important;
+}
+
+.btn-reject {
+  size: 10px;
+  background-color: red !important;
+  color: white !important;
+}
+
+.btn-reject:hover {
+  color: white !important;
+}
+
+.btn-validated {
+  background-color: #0ef522 !important;
+  color: white !important;
+}
+
+.btn-validated:hover {
+  color: white !important;
+}
+
+body {
+  height: 100%;
+  background-image: url(/images/b.png?5521f28e806e5465cd9193f48c092dd9);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 

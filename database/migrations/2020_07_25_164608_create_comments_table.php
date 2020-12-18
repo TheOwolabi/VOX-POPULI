@@ -18,8 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('commentable_id');
             $table->string('commentable_type');
             $table->text('comment');
-            $table->unique(['user_id,commentable_id,commentable_type']);
-            
+            $table->unique(['user_id','commentable_id','commentable_type']);
             $table->timestamps();
         });
     }

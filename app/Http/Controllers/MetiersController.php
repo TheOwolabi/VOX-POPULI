@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Metier;
 use Illuminate\Http\Request;
-use App\Http\Requests\MetierFormRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\MetierFormRequest;
 
 class MetiersController extends Controller
 {
@@ -13,7 +14,7 @@ class MetiersController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,9 @@ class MetiersController extends Controller
      */
     public function index()
     {
-        $metiers = Metier::where('user_id',Auth::id())->get()->reverse();
-       
-        return view('metier.all',compact('metiers'));
+        $metiers = Metier::where('user_id', Auth::id())->get()->reverse();
+
+        return view('metier.all', compact('metiers'));
     }
 
     /**
@@ -35,7 +36,7 @@ class MetiersController extends Controller
     {
         $metier = new Metier;
 
-        return view('metier.create',compact('metier'));
+        return view('metier.create', compact('metier'));
     }
 
     /**
@@ -46,7 +47,7 @@ class MetiersController extends Controller
      */
     public function store(MetierFormRequest $request)
     {
-        
+
         $metier = Metier::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -56,7 +57,6 @@ class MetiersController extends Controller
         auth()->user()->setMetierId($metier);
 
         return redirect()->route('metier.index');
-
     }
 
     /**
@@ -67,7 +67,6 @@ class MetiersController extends Controller
      */
     public function show(Metier $metier)
     {
-       
     }
 
     /**
@@ -78,7 +77,7 @@ class MetiersController extends Controller
      */
     public function edit(Metier $metier)
     {
-        return view('metier.edit',compact('metier'));
+        return view('metier.edit', compact('metier'));
     }
 
     /**

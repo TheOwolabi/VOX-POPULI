@@ -7,7 +7,9 @@
             @if ($model == 'idea')
              <a href="{{route('home')}}" class="btn btn-success">AJOUTER {{$btn}}</a>    
             @else
-            <a href="{{$model}}/create" class="btn btn-success">AJOUTER {{$btn}}</a>  
+                @can('update', Auth::user())
+                <a href="{{$model}}/create" class="btn btn-success">AJOUTER {{$btn}}</a>  
+                @endcan
             @endif
         </p>
     </div>

@@ -5,10 +5,11 @@
             @if ($officiels->isEmpty())
              @include('shared._empty',['model'=>'officiel','btn'=>'UN OFFICIEL', 'msg' => "aucun officiel n'a pour le moment été créé"]) 
             @else
+            @can('update', Auth::user())
              <p class="d-flex justify-content-center lead">
                 <a href="{{route('officiel.create')}}" class="btn btn-success">AJOUTER UN OFFICIEL</a>
              </p>
-             
+             @endcan
              <div class="row mt-3">
                 @foreach ($officiels as $officiel)
                 <div class="col-md-5 mx-auto p-1 ">
@@ -20,13 +21,15 @@
                                 <span href="" class="badge badge-warning"> {{$officiel->poste->intitule}}</span>
                                 </div>
                                 <div class="col-md-3 pr-1">
-                                <div class="float-right">                            
-                                    <form style="display: inline-block;" action="{{route('officiel.destroy', $officiel->id)}}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <input type="submit" class="btn btn-outline-danger" value="DESTITUER">
-                                    </form>
-                                </div>
+                                @can('update', Auth::user())
+                                    <div class="float-right">                            
+                                        <form style="display: inline-block;" action="{{route('officiel.destroy', $officiel->id)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <input type="submit" class="btn btn-outline-danger" value="DESTITUER">
+                                        </form>
+                                    </div>
+                                @endcan
                                 </div>
                             </div>
                         </div>

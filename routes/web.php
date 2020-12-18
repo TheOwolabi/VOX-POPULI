@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', 'RootPagesController');
+Route::get('/idea-stats', 'AdminController@stats')->name('stats');
+Route::post('/set-status/{idea}', 'AdminController@status')->name('status');
 Route::get('/verification', 'NexmoController@show')->name('nexmo');
 Route::post('/verification', 'NexmoController@verify')->name('nexmo');
 Route::resource('/metier', 'MetiersController');

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use App\Models\Idea;
 use App\Models\Actualite;
 use Illuminate\Support\Facades\Gate;
@@ -17,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Idea::class => 'App\Policies\IdeaPolicy',
         Actualite::class => 'App\Policies\ActualitePolicy',
+        User::class => 'App\Policies\AdminPolicy',
     ];
 
     /**

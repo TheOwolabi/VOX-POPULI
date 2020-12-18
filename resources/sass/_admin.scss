@@ -1,0 +1,110 @@
+[class^="flaticon-"]:before
+{
+    font-family: Flaticon;
+    font-size: 20px;
+    font-style: normal;
+    margin-right: 2px;
+    margin-left: 0px !important;
+    margin-bottom: 5px !important;
+}
+
+a
+{
+    color: brown;
+    text-decoration: none !important;
+
+    &:hover
+    {
+        color: #8a3c2e !important;
+    }
+
+}
+
+
+
+.font
+{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.navbar
+{
+    margin-top: 15px;
+}
+
+.card
+{
+    color: black;
+
+  
+
+    .title
+    {
+        .top
+        {
+            padding: 7px;
+            background-color: white;
+            color: black;
+
+            &:hover
+            {
+                border-left: solid 4px blanchedalmond;
+                transition: 0.5s;
+            }
+        }
+        // background-color: #ffe4b51c;
+        // border-top: solid 4px blanchedalmond;
+        // border-left: solid 4px blanchedalmond;
+        // border-right: solid 4px blanchedalmond;
+
+    }
+    .card-header
+    {
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .card-body
+    {
+        background-color: #ffe4b51c;
+        border-left: solid 4px blanchedalmond;
+        border-right: solid 4px blanchedalmond;
+    }
+
+	p.lead 
+	 {
+	color: black;
+
+    };
+    
+
+}
+
+
+
+div.stats
+{
+    margin-top: 3px;
+	span.chiffre
+	{
+        color: rgb(70, 53, 11);
+        font-weight: bold;
+		padding: 12px;
+        font-size: 9.5px;
+	
+	}
+
+	i.flaticon-like
+	{
+        font-size: 4px;
+		color: #10d420;
+	}
+	
+	i.flaticon-dislike{
+        font-size: 4px;
+
+	color: red;
+	}
+
+}

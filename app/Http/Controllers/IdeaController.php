@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use App\Models\Image;
-use App\Models\Comment;
+use App\User;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Requests\IdeaFormRequest;
+use App\Models\Commentable;
 
 class IdeaController extends Controller
 {
@@ -85,7 +86,9 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
-        $comments = Comment::where('idea_id',$idea->id)->get()->reverse();
+        $comments = Commentable::where('commentable_id',$idea->id)->get()->reverse();
+        //  $comments = [];
+    
       
         return view('idea.show',compact(['idea','comments']));
     }

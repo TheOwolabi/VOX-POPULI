@@ -50,7 +50,7 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea)
     {
-        return $user->id == $idea->user_id;
+        return ($user->id == $idea->user_id) && ($idea->status != "traitement" && $idea->status != "validée");
     }
 
     /**
@@ -62,7 +62,7 @@ class IdeaPolicy
      */
     public function delete(User $user, Idea $idea)
     {
-        return $user->id == $idea->user_id;
+        return ($user->id == $idea->user_id) && ($idea->status != "traitement" && $idea->status != "validée");
     }
 
     /**

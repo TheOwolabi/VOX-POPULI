@@ -41,15 +41,25 @@ class CommentsController extends Controller
      */
     public function store(CommentFormRequest $request, Idea $idea)
     {
-       Comment::create([
-            'comment' => $request->comment,
-            'idea_id' => $idea->id
-       ]);
+        
+        
+        auth()->user()->commentI($idea,$request->comment);
 
-       notify()->success('Commentaire ajouté. Merci de contribuer ! ');
+        // Comment::create([
+        //     'comment' => $request->comment,
 
-       return back();
+        //     'idea_id' => $idea->id,
+        //     'user_id' => auth()->user()->id,
+
+
+        // ]);
+
+        notify()->success('Commentaire ajouté. Merci de contribuer ! ');
+
+        return back();
     }
+
+
 
     /**
      * Display the specified resource.

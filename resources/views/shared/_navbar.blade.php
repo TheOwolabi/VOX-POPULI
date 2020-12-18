@@ -25,6 +25,13 @@
                 <a class="dropdown-item" href="{{ route('poste.index') }}">
                     Postes
                 </a> 
+
+                @can('view', Auth::user())
+                    <a class="dropdown-item" href="{{ route('stats') }}">
+                        Statistiques
+                    </a>
+                @endcan
+               
                 <a class="dropdown-item" href="{{ route('actualite.index') }}">
                     Actualites
                 </a>

@@ -14,7 +14,7 @@ class Idea extends Model
     use Traits\Idea_helpers;
     public $timestamps = true;
 
-    protected $fillable = ['topic','content','likes','unlikes','subtitle','reactions','user_id','image_id','categorie_id'];
+    protected $fillable = ['topic','content','likes','unlikes','subtitle','reactions','user_id','image_id','categorie_id', 'status'];
     
     public function user()
     {
@@ -24,6 +24,11 @@ class Idea extends Model
     public function votes()
     {
         return  $this->morphToMany(User::class,'votable')->withPivot('value');
+    }
+
+    public function comments()
+    {
+        return $this->morphToMany(User::class,'commentable')->withPivot('comment');
     }
 
     public function favorites()
@@ -58,8 +63,5 @@ class Idea extends Model
         return $this->image()->where('image_id',$this->image_id)->first()->path;
     }
    
-    public function comments()
-    {
-        return $this->morphToMany(User::class,'comment')->withPivot('comment');
-    }
+    
 }
