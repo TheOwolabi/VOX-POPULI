@@ -11,6 +11,6 @@ class RootPagesController extends Controller
    {
       $ideas = Idea::all()->reverse();
 
-      return view('root.welcome',compact('ideas'));
+      return view('root.acceuil');
    }
 }

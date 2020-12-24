@@ -1,0 +1,65 @@
+@import url(https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap);html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+}
+
+body a {
+  color: black;
+}
+
+body a:hover {
+  text-decoration: none;
+}
+
+body a.vox {
+  font-size: 18px;
+  color: gold;
+  font-weight: bold;
+}
+
+body a.vox:hover {
+  color: white;
+  transition: 0.5s;
+}
+
+body a.login {
+  font-family: "Jura", sans-serif;
+  color: white;
+  padding: 3px;
+  border-radius: 3px;
+  border: solid 2px gold;
+}
+
+body a.login:hover {
+  background-color: #e0bf00;
+  font-weight: bold;
+  color: white;
+  transition: 0.5s;
+}
+
+section.main {
+  background-image: url(/images/Bacceuil.png?f8e9de1b6a0bb0027fa480e6e7e759d9);
+  background-position-y: -20px;
+  background-size: cover;
+  min-height: 100%;
+}
+
+header {
+  padding: 5px;
+  background-color: black;
+  opacity: 0.6;
+}
+
+header .row {
+  margin: 0px;
+}
+
+div.main-content {
+  margin-top: 550px;
+}
+
