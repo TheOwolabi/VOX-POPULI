@@ -20,10 +20,10 @@
 	<!-- Bootstrap itself -->
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-	<link href="{{ asset('css/font/flaticon.css') }}" rel="stylesheet">
+	<link href="css/font/flaticon.css" rel="stylesheet">
 
     
-	<script src="{{ asset('admin/superawesome/SuperAwesome/assets/js/app.js') }}" defer></script>
+	<script src="admin/superawesome/SuperAwesome/assets/js/app.js" defer></script>
 	<!--[if lt IE 9]> <script src="assets/js/html5shiv.js"></script> <![endif]-->
 </head>
 
@@ -211,6 +211,6 @@
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="admin/superawesome/SuperAwesome/assets/js/template.js"></script>
-<script src="{{ asset('admin/superawesome/SuperAwesome/assets/js/share.js') }}"></script>
+<script src="admin/superawesome/SuperAwesome/assets/js/share.js"></script>
 </body>
 </html>
