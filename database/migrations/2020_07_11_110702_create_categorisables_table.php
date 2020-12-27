@@ -15,9 +15,9 @@ class CreateCategorisablesTable extends Migration
     {
         Schema::create('categorisables', function (Blueprint $table) {
             $table->unsignedBigInteger('categorie_id');
-            $table->unsignedBigInteger('categorisable_id');
-            $table->string('categorisable_type');
-            $table->unique(['categorie_id','categorisable_id','categorisable_type']);
+            $table->unsignedBigInteger('tocateg_id');
+            $table->string('tocateg_type');
+            $table->unique(['categorie_id','tocateg_id','tocateg_type']);
             $table->timestamps();
         });
     }

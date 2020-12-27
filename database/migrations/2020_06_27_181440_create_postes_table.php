@@ -18,11 +18,6 @@ class CreatePostesTable extends Migration
             $table->string('intitule')->unique();
             $table->string('fiche');
             $table->unsignedInteger('mandat');
-            $table->unsignedBigInteger('officiel_id')->nullable();
-
-            $table->foreign('officiel_id')->references('id')->on('officiels')->onDelete('SET NULL');  
-       
-            
             $table->timestamps();
         });
     }
