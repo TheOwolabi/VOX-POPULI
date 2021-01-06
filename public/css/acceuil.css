@@ -61,7 +61,43 @@ header .row {
 }
 
 div.main-content {
-  display: block;
-  margin-top: 750px;
+  margin-top: 250px;
+  min-height: 75%;
+}
+
+div.main-content .ex {
+  color: whitesmoke;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.795);
+  border: solid 8px rgba(245, 245, 245, 0.836);
+  border-radius: 6px;
+}
+
+div.main-content .ex h2 {
+  color: beige;
+}
+
+div.main-content .ex svg {
+  position: relative;
+}
+
+div.main-content .ex svg.icon.pour {
+  position: absolute;
+  height: 51px;
+}
+
+div.main-content .ex svg.icon.pour:hover {
+  height: 55px;
+  transition: 0.3s;
+}
+
+div.main-content .ex svg.icon.contre {
+  position: absolute;
+  height: 51px;
+}
+
+div.main-content .ex svg.icon.contre:hover {
+  height: 55px;
+  transition: 0.3s;
 }
 

@@ -12,7 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/login-main.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/acceuil.scss', 'public/css')
+    .sass('resources/sass/login-main.scss', 'public/css')
+    .sass('resources/sass/login-util.scss', 'public/css')
     .sass('resources/sass/styles.scss', 'public/admin/superawesome/SuperAwesome/assets/css/')
     ;

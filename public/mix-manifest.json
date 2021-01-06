@@ -2,5 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/acceuil.css": "/css/acceuil.css",
-    "/admin/superawesome/SuperAwesome/assets/css/styles.css": "/admin/superawesome/SuperAwesome/assets/css/styles.css"
+    "/css/login-main.css": "/css/login-main.css",
+    "/css/login-util.css": "/css/login-util.css",
+    "/admin/superawesome/SuperAwesome/assets/css/styles.css": "/admin/superawesome/SuperAwesome/assets/css/styles.css",
+    "/js/login-main.js": "/js/login-main.js"
 }
