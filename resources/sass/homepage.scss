@@ -1,0 +1,112 @@
+body {
+    padding-top: 56px;
+}
+
+#ideas
+{
+    margin-top: 555px;
+}
+
+div.container-fluid
+{
+    position: absolute;
+    width: 1023px;
+    height: 560px;
+    z-index: 1000;
+
+    div.container
+    {
+        margin-top: 17px;
+        margin-left: 250px;
+    }
+}
+
+a.vox
+{
+    text-decoration: none;
+    font-size: 18px;
+    color: gold;
+    font-weight:bold;
+
+    &:hover
+    {
+        color: white;
+        transition: 0.5s;
+
+    }
+}
+
+a.fbbut
+{
+    color: gold;
+    position: absolute;
+    font-size: 92px;
+    margin-top: 339px;
+    margin-left: 539px;
+
+    &:hover
+    {
+        color: rgb(3, 68, 245);
+        transition: 0.5s;
+    }
+    
+}
+
+a.instbut
+{
+    color: gold ;
+    position: absolute;
+    font-size: 80px;
+    margin-top: 348px;
+    margin-left: 710px;
+
+    &:hover
+    {
+        color: #ffb300;
+        transition: 0.5s;
+    }
+    
+}
+
+a.dropdown-item
+{
+    color: rgba(240, 248, 255, 0.425);
+    &:hover
+    {
+        background-color: transparent ;
+        color: gold;
+        transition: 0.3s;
+    }   
+}
+
+a.twittbut
+{
+    color: gold;
+    position: absolute;
+    font-size: 80px;
+    margin-top: 348px;
+    margin-left: 871px;
+
+    &:hover
+    {
+        color: #55ddff;
+        transition: 0.5s;
+    }
+    
+}
+
+.btn-outline-gold {
+	color:#eece1b !important;
+	background-color: white;
+	border: solid 1px gainsboro !important;
+	// box-shadow: 0.5px 0.5px 1px 0.4px gainsboro;
+	border-radius: 0px !important;
+	overflow: hidden !important;
+	&:hover
+	{
+		border: solid 1px #f4d835 !important;
+		background-color: #eece1b;
+		color: whitesmoke !important;
+		transition: 0.5s;
+	}
+}

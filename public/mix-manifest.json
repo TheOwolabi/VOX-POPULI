@@ -1,6 +1,8 @@
 {
+    "/js/acceuil.js": "/js/acceuil.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/homepage.css": "/css/homepage.css",
     "/css/acceuil.css": "/css/acceuil.css",
     "/css/login-main.css": "/css/login-main.css",
     "/css/login-util.css": "/css/login-util.css",
