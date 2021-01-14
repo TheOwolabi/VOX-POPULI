@@ -177,6 +177,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -6534,6 +6535,40 @@ button.bg-black:focus {
   border-radius: 0.3rem !important;
 }
 
+a.circle
+{
+  background-color: white;
+  border-radius: 100px;
+  padding: 10px;
+  text-decoration: none;
+  
+  &.like
+  {
+    color: green;
+    font-size: 16px;
+
+    &:hover
+    {
+      color: greenyellow;
+      scale: 1.1;
+      transition: 0.5s;
+    }
+  }
+
+  &.dislike
+  {
+    color: red;
+    font-size: 16px;
+
+    &:hover
+    {
+      color: rgb(255, 112, 112);
+      scale: 1.1;
+      transition: 0.5s;
+    }
+  }
+}
+
 .rounded-circle {
   border-radius: 50% !important;
 }
@@ -10395,20 +10430,14 @@ body {
   margin-bottom: 5rem;
 }
 
-.projects-section {
-  padding: 10rem 0;
-}
-.projects-section .featured-text {
-  padding: 2rem;
-}
+
+
 @media (min-width: 992px) {
   .projects-section .featured-text {
-    padding: 0 0 0 2rem;
-    border-left: 0.5rem solid #64a19d;
+    border-left: 0.5rem solid gold;
   }
 }
 .projects-section .project-text {
-  padding: 3rem;
   font-size: 90%;
 }
 @media (min-width: 992px) {
@@ -10416,19 +10445,19 @@ body {
     padding: 5rem;
   }
   .projects-section .project-text hr {
-    border-color: #64a19d;
+    border-color: gold;
     border-width: 0.25rem;
     width: 30%;
   }
 }
 
 .signup-section {
-  padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("../images/acceuil/bg-signup.jpg");
+  padding: 8rem 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("../images/Yellow-Banner.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-size: cover;
+  background-size: contain;
 }
 .signup-section .form-inline input {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
