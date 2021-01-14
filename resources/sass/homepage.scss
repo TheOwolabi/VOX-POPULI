@@ -7,9 +7,36 @@ body {
     margin-top: 555px;
 }
 
+.idea
+{
+    background-color: black;
+    padding: 57px;
+    border-left: solid 6px white;
+    border-top: solid 6px white;
+
+
+
+    &:hover
+    {
+        border: solid 6px gold;
+         margin: 10px;
+        transform: scale(1.04);
+        transition: 0.4s;
+        
+    }
+
+    hr.bl
+    {
+        border-color: gold;
+        border-width: 0.25rem;
+        width: 30%;  
+    }
+}
+
 div.container-fluid
 {
     position: absolute;
+    margin: 0 250px;
     width: 1023px;
     height: 560px;
     z-index: 1000;
@@ -17,7 +44,7 @@ div.container-fluid
     div.container
     {
         margin-top: 17px;
-        margin-left: 250px;
+        // margin-left: 250px;
     }
 }
 
