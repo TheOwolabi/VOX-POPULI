@@ -11026,6 +11026,11 @@ div.row.no-gutters.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-m
   border-left: solid 6px gold;
 }
 
+.title:hover {
+  color: gold;
+  transition: 0.5s;
+}
+
 #comment {
   background-color: transparent;
   border: none;
@@ -11086,7 +11091,7 @@ a:hover {
 }
 
 .dropdown-menu {
-  border: solid 1px greenyellow;
+  border: solid 1px gold;
   margin-left: 10px;
   border: transparent;
   background-color: transparent;
@@ -11102,7 +11107,7 @@ a:hover {
   box-shadow: 1px 1px 3px black;
   color: #ffffff;
   text-decoration: none;
-  background-color: #41790b;
+  background-color: #ffe54f;
   font-size: 17px;
   transition: 0.3s;
 }

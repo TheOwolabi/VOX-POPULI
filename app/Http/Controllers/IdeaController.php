@@ -22,9 +22,9 @@ class IdeaController extends Controller
 
     public function index()
     {
-        $actualites = Actualite::all()->reverse();
+        $ideas = Idea::all()->reverse();
 
-        return view('actualite.all',compact(['bg','actualites']));
+        return view('idea.all',compact('ideas'));
     }
 
     /**
@@ -34,7 +34,8 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        //    return view('idea.create',compact(['bg',idea']));
+        $categories = Categorie::all();
+        return view('idea.create',compact('categories'));
     }
 
     /**
@@ -77,7 +78,7 @@ class IdeaController extends Controller
 
        $idea->categorise($request->categorie);
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
-        return redirect()->route(['bg','index']);
+        return redirect()->route('idea.show',compact('idea'));
 
     }
 
@@ -92,9 +93,8 @@ class IdeaController extends Controller
         $comments = Commentable::where('commentable_id',$idea->id)->get()->reverse();
         //  $comments = [];
         
-        $bg = $this->bg;
       
-        return view('idea.show',compact(['bg','idea','comments']));
+        return view('idea.show',compact(['idea','comments']));
     }
 
     /**
@@ -105,9 +105,8 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
-        $bg = $this->bg;
         $categories = Categorie::all();
-        return view('idea.edit',compact(['bg','idea','categories','bg']));
+        return view('idea.edit',compact(['idea','categories']));
     }
 
     /**
@@ -119,7 +118,6 @@ class IdeaController extends Controller
      */
     public function update(IdeaFormRequest $request, Idea $idea)
     {
-        $bg = $this->bg;
 
         $idea->update([
             'topic' => $request->topic,
@@ -152,7 +150,7 @@ class IdeaController extends Controller
 
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
 
-        return redirect()->route(['bg','index']);
+        return redirect()->route('index');
     }
 
     /**
@@ -163,11 +161,10 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
-        $bg = $this->bg;
         $idea->delete();
 
         notify()->success("Idée supprimée avec succèss");
 
-        return redirect()->route(['bg','index']);
+        return redirect()->route('home');
     }
 }

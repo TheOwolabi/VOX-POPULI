@@ -1,5 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
 <div class="container-fluid mt-4 ">
-    <div id="collapseExample" class="collapse  col-md-11 mx-auto mt-4 bg-light shadow-sm p-4 ">
+    <div id="collapseExample" class="col-md-8 mx-auto mt-4 bg-light shadow-sm p-4 ">
         <form action="{{route('idea.store')}}" class="" method="post" enctype="multipart/form-data">  
             @csrf
 
@@ -77,3 +80,4 @@
         </form>
     </div>
 </div>
+@endsection
