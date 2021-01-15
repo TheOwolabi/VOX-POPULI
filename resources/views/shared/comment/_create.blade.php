@@ -1,8 +1,7 @@
-<div class="card-body">
+<div class="container card-body">
     <form action="{{route('idea.comment.store',$idea)}}" id="com" class="" method="POST" >  
         @csrf
-            <div class="row">
-                <div class="offset-md-4 col-md-4">
+                <div class="offset-md-2 col-md-8">
                     <textarea name="comment" id="comment" class="form-control @error('comment') is-invalid @enderror " cols="1" rows="3"> 
                         
                     </textarea>
@@ -11,9 +10,8 @@
                         {{$message}}
                     @enderror
             </div>
-            <div class="col my-auto">
-                    <button class="d-inline btn rounded-circle btn-success"><i class="fas fa-paper-plane"></i></button>      
+            <div class="d-flex justify-content-center">
+                    <button class="d-inline btn btn-dark"><i class="fas fa-paper-plane"></i> Commenter</button>      
             </div>
-        </div>
     </form>
 </div>

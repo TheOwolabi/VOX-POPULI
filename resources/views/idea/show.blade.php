@@ -3,7 +3,7 @@
 @section('content')
 <div class="row d-flex justify-content-center mt-4">
     <div class="col-md-7">
-        <div id="" class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div id="idea" class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
                 <div class="d-inline-block">
                     <div class="float-right mt-1">
@@ -102,7 +102,53 @@
 @include('shared.comment._create') 
 
 {{-- Displaying comments --}}
-<div class="mt-4 card-body offset-md-2 ">
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        @foreach ($comments as $comment)
+            <div class="col-md-8">
+                <div class="card p-3 mb-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">{{ strtoupper($comment->user->name)}}</small> <small class="font-weight-bold">{{$comment->comment}}</small>
+                    </div>
+                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                        <div class="reply px-4"> 
+                            <small> 
+                                <a class="icon pour {{$comment->Votebuttons_state() == 'up' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$comment->id}}').submit();"><i class="flaticon-like"></i></a>
+                                <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" id="upvote-form-{{$comment->id}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name='vote' value="1">
+                    
+                                    @if($comment->Votebuttons_state())
+                                        @method('DELETE')
+                                    @endif
+                                </form>
+                            </small> <span class="dots"></span> 
+                            
+                            <small>
+                                <a class="icon contre {{$comment->Votebuttons_state() == 'down' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('downvote-form-{{$comment->id}}').submit();"><i class="flaticon-dislike"></i></a>
+                                <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" style="display: none;" id="downvote-form-{{$comment->id}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name='vote' value="-1">
+                                    
+                                    @if($comment->Votebuttons_state())
+                                        @method('DELETE')
+                                    @endif
+                                </form>
+                            </small> <span class="dots"></span>     
+                        </div>
+                        
+                        
+                        <div class="icons align-items-center"> <i class="fa fa-star text-warning"></i> <i class="fa fa-check-circle-o check-icon"></i> </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
+
+ {{-- <div class="mt-4 card-body offset-md-2 ">
   @foreach ($comments as $comment)
     <div class="row"> 
         <div class="col-md-2 my-auto">
@@ -122,7 +168,7 @@
         </div>
         <div class="ml-2 my-auto">
             <a class="icon pour {{$comment->Votebuttons_state() == 'up' ? $comment->Votebuttons_state() : "" }}"  href="" onclick="event.preventDefault(); document.getElementById('upvote-form-{{$comment->id}}').submit();"><i class="flaticon-like"></i></a>
-            <form action="/idea/{{$idea->id}}/comment/{{$comment->id}}/vote" style="display: none;" id="upvote-form-{{$comment->id}}" method="post">
+            <form action="/idea/{{$idea->id}}/comment/{{$comment->commentable_id}}/vote" style="display: none;" id="upvote-form-{{$comment->id}}" method="post">
                 @csrf
                 <input type="hidden" name='vote' value="1">
 
@@ -144,7 +190,5 @@
         <br>
     </div>
   @endforeach
-</div>
-
-
+</div>  --}}
 @endsection

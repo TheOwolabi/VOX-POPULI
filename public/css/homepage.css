@@ -52,7 +52,6 @@ a.vox:hover {
 
 a.fbbut {
   color: gold;
-  position: absolute;
   font-size: 92px;
   margin-top: 339px;
   margin-left: 539px;
@@ -65,7 +64,6 @@ a.fbbut:hover {
 
 a.instbut {
   color: gold;
-  position: absolute;
   font-size: 80px;
   margin-top: 348px;
   margin-left: 710px;
@@ -76,19 +74,25 @@ a.instbut:hover {
   transition: 0.5s;
 }
 
+a,
 a.dropdown-item {
   color: rgba(240, 248, 255, 0.425);
 }
 
+a:hover,
 a.dropdown-item:hover {
+  text-decoration: none;
   background-color: transparent;
   color: gold;
   transition: 0.3s;
 }
 
+a {
+  color: white;
+}
+
 a.twittbut {
   color: gold;
-  position: absolute;
   font-size: 80px;
   margin-top: 348px;
   margin-left: 871px;
@@ -111,6 +115,35 @@ a.twittbut:hover {
   border: solid 1px #f4d835 !important;
   background-color: #eece1b;
   color: whitesmoke !important;
+  transition: 0.5s;
+}
+
+a.circle {
+  background-color: #343a38;
+  border-radius: 100px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+a.circle.like {
+  color: green;
+  font-size: 16px;
+}
+
+a.circle.like:hover {
+  color: greenyellow;
+  scale: 1.1;
+  transition: 0.5s;
+}
+
+a.circle.dislike {
+  color: red;
+  font-size: 16px;
+}
+
+a.circle.dislike:hover {
+  color: #ff7070;
+  scale: 1.1;
   transition: 0.5s;
 }
 

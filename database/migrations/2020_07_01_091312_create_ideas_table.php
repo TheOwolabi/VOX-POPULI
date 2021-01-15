@@ -16,14 +16,18 @@ class CreateIdeasTable extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
             $table->string('topic');
-            $table->string('content');
+            $table->text('content');
+            $table->string('subtitle');
             $table->integer('likes')->nullable();
             $table->integer('unlikes')->nullable();
             $table->integer('reactions')->nullable();
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->unsignedBigInteger('categorie_id');
 
+            $table->foreign('categorie_id')->references('id')->on('categories');
+ 
 
             $table->timestamps();
         });

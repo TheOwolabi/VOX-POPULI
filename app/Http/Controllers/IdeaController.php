@@ -17,11 +17,14 @@ class IdeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $bg = '../../images/login.jpg';
+
     public function index()
     {
         $actualites = Actualite::all()->reverse();
 
-        return view('actualite.all',compact('actualites'));
+        return view('actualite.all',compact(['bg','actualites']));
     }
 
     /**
@@ -31,7 +34,7 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        //    return view('idea.create',compact('idea'));
+        //    return view('idea.create',compact(['bg',idea']));
     }
 
     /**
@@ -74,7 +77,7 @@ class IdeaController extends Controller
 
        $idea->categorise($request->categorie);
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
-        return redirect()->route('index');
+        return redirect()->route(['bg','index']);
 
     }
 
@@ -88,9 +91,10 @@ class IdeaController extends Controller
     {
         $comments = Commentable::where('commentable_id',$idea->id)->get()->reverse();
         //  $comments = [];
-    
+        
+        $bg = $this->bg;
       
-        return view('idea.show',compact(['idea','comments']));
+        return view('idea.show',compact(['bg','idea','comments']));
     }
 
     /**
@@ -101,9 +105,9 @@ class IdeaController extends Controller
      */
     public function edit(Idea $idea)
     {
+        $bg = $this->bg;
         $categories = Categorie::all();
-
-        return view('idea.edit',compact(['idea','categories']));
+        return view('idea.edit',compact(['bg','idea','categories','bg']));
     }
 
     /**
@@ -115,6 +119,8 @@ class IdeaController extends Controller
      */
     public function update(IdeaFormRequest $request, Idea $idea)
     {
+        $bg = $this->bg;
+
         $idea->update([
             'topic' => $request->topic,
             'subtitle' => $request->subtitle,
@@ -146,7 +152,7 @@ class IdeaController extends Controller
 
         notify()->success("Bravo ! Idée soumise à l'approbation de la communauté ...");
 
-        return redirect()->route('index');
+        return redirect()->route(['bg','index']);
     }
 
     /**
@@ -157,10 +163,11 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea)
     {
+        $bg = $this->bg;
         $idea->delete();
 
         notify()->success("Idée supprimée avec succèss");
 
-        return redirect()->route('index');
+        return redirect()->route(['bg','index']);
     }
 }

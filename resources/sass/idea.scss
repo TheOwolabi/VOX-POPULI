@@ -1,0 +1,161 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+@import 'buttons';
+@import 'sharing';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+div.row.no-gutters.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-md-250.position-relative:hover
+{  
+    box-shadow: 1px 1px 9px 0px #0f1e034d !important;
+    transition: .4s;
+}
+
+#idea 
+{
+    border-left: solid 6px gold;
+}
+
+#comment
+{
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 2px whitesmoke ;
+    border-radius: 0px;
+    color: white;
+    margin-bottom: 10px;
+    &:hover
+    {
+        // box-shadow: 0.5px 0.5px 2.5px 0.5px whitesmoke;
+        transition: 0.5s;
+    }
+    
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+body
+{
+    font-weight: 200;
+}
+
+a
+{
+    color: #636b6f;
+    text-decoration: none;
+}
+
+thead
+{
+    height: 1285.820px;
+    width: 47.273px;
+    background-color: #77be7724;
+}
+
+tbody:hover
+{
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.5s;
+    box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
+.card:hover
+{
+    .card-header
+    {
+        background-color: #77be7724;
+        transition: 0.6s;
+    }
+   
+}
+
+.card-body
+{
+    padding-bottom: 0px;
+}
+.dropdown-menu
+{
+    border: solid 1px greenyellow;
+    margin-left: 10px;
+    border: transparent;
+    background-color: transparent;
+
+}
+
+#nav
+{
+    width: 168.73px;
+    height: 160px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    box-shadow: 1px 1px 3px rgb(0, 0, 0);
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #41790b;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+
+.btn-gold 
+{
+	background-color:#eece1b !important;
+	color: white !important;
+
+	&:hover
+	{
+		color: white !important;
+	}
+}
+
+.btn-reject
+{
+    size: 10px;
+	background-color:red !important;
+	color: white !important;
+
+	&:hover
+	{
+		color: white !important;
+	}
+}
+
+.btn-validated
+{
+	background-color: #0ef522 !important;
+	color: white !important;
+
+	&:hover
+	{
+		color: white !important;
+	}
+}
+
+body{
+    height: 100%;
+    
+    background-image: url(../images/b.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

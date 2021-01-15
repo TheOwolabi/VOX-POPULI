@@ -27,9 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $idea = new Idea;
+        $ideas = Idea::where('user_id',auth()->user()->id)->get()->reverse();
         $categories = Categorie::all();
 
-        return view('home',compact(['idea','categories']));
+        return view('home',compact(['ideas','categories']));
     }
 }

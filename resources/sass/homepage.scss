@@ -66,7 +66,6 @@ a.vox
 a.fbbut
 {
     color: gold;
-    position: absolute;
     font-size: 92px;
     margin-top: 339px;
     margin-left: 539px;
@@ -82,7 +81,6 @@ a.fbbut
 a.instbut
 {
     color: gold ;
-    position: absolute;
     font-size: 80px;
     margin-top: 348px;
     margin-left: 710px;
@@ -95,21 +93,28 @@ a.instbut
     
 }
 
-a.dropdown-item
+a,a.dropdown-item
 {
     color: rgba(240, 248, 255, 0.425);
+    
     &:hover
     {
+        text-decoration: none;
         background-color: transparent ;
         color: gold;
         transition: 0.3s;
     }   
+
+}
+
+a
+{
+    color: white;
 }
 
 a.twittbut
 {
     color: gold;
-    position: absolute;
     font-size: 80px;
     margin-top: 348px;
     margin-left: 871px;
@@ -136,4 +141,38 @@ a.twittbut
 		color: whitesmoke !important;
 		transition: 0.5s;
 	}
+}
+
+a.circle
+{
+  background-color:#343a38;
+  border-radius: 100px;
+  padding: 10px;
+  text-decoration: none;
+  
+  &.like
+  {
+    color: green;
+    font-size: 16px;
+
+    &:hover
+    {
+      color: greenyellow;
+      scale: 1.1;
+      transition: 0.5s;
+    }
+  }
+
+  &.dislike
+  {
+    color: red;
+    font-size: 16px;
+
+    &:hover
+    {
+      color: rgb(255, 112, 112);
+      scale: 1.1;
+      transition: 0.5s;
+    }
+  }
 }

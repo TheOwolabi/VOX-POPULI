@@ -77,7 +77,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">Par le peuple, pour le peuple</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">La plateforme numero une sur le developpement de votre commune </h2>
                     @guest
-                     <a class="btn btn-outline-gold" href="#about">JE PARTICIPE</a>
+                     <a class="btn btn-outline-gold" href="{{route('register')}}">JE PARTICIPE</a>
                     @endguest
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <!-- Project One Row-->
-                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                {{-- <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
                     <div class="col-lg-6"><img class="img-fluid" src="images/acceuil/demo-image-01.jpg" alt="" /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
@@ -130,9 +130,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Project Two Row-->
-                <div class="row justify-content-center no-gutters">
+                {{-- <div class="row justify-content-center no-gutters">
                     <div class="col-lg-6"><img class="img-fluid" src="images/acceuil/demo-image-02.jpg" alt="" /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
         <!-- Signup-->
@@ -155,7 +155,7 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         
-                        <a class="btn btn-outline-gold" href="#about">JE PARTICIPE</a>
+                        <a class="btn btn-outline-gold" href="{{route('register')}}">JE PARTICIPE</a>
                        
                     </div>
                 </div>

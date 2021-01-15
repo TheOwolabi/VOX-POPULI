@@ -49854,6 +49854,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/idea.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/idea.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/login-main.scss":
 /*!****************************************!*\
   !*** ./resources/sass/login-main.scss ***!
@@ -49888,14 +49899,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/homepage.scss ./resources/sass/acceuil.scss ./resources/sass/login-main.scss ./resources/sass/login-util.scss ./resources/sass/styles.scss ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/idea.scss ./resources/sass/homepage.scss ./resources/sass/acceuil.scss ./resources/sass/login-main.scss ./resources/sass/login-util.scss ./resources/sass/styles.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\sass\idea.scss */"./resources/sass/idea.scss");
 __webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
 __webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\sass\acceuil.scss */"./resources/sass/acceuil.scss");
 __webpack_require__(/*! D:\Desktop\DEV WEB\PROJETS\efrei\V0-VOX-POPULI\resources\sass\login-main.scss */"./resources/sass/login-main.scss");
