@@ -16,7 +16,7 @@ class AddOfficielIdOnPoste extends Migration
         Schema::table('postes', function (Blueprint $table) {
             $table->unsignedBigInteger('officiel_id')->nullable();
 
-            $table->foreign('officiel_id')->references('id')->on('officiels')->onDelete('SET NULL');  
+            $table->foreign('officiel_id')->references('id')->on('officiels')->onDelete('CASCADE');  
        
         });
     }
