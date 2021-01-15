@@ -24,9 +24,7 @@ class CreateIdeasTable extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
-            $table->unsignedBigInteger('categorie_id');
-
-            $table->foreign('categorie_id')->references('id')->on('categories');
+          
  
 
             $table->timestamps();
