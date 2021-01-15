@@ -104,8 +104,9 @@
 {{-- Displaying comments --}}
 
 <div class="container mt-5">
+    @foreach ($comments as $comment)
     <div class="row d-flex justify-content-center">
-        @foreach ($comments as $comment)
+       
             <div class="col-md-8">
                 <div class="card p-3 mb-2">
                     <div class="d-flex justify-content-between align-items-center">
@@ -143,8 +144,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        
     </div>
+    @endforeach
 </div>
 
 
