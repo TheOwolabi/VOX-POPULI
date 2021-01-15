@@ -7,6 +7,7 @@ use App\Models\Idea;
 
 class RootPagesController extends Controller
 {
+
    public function index()
    {
       $ideas = Idea::all()->reverse();

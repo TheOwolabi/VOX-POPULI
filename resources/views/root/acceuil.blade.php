@@ -31,8 +31,11 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
+                        @php
+                            $bg = '../../images/login.jpg';
+                        @endphp
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register',['bg'=>'../../images/login.jpg']) }}">Register</a>
                             </li>
                         @endif
                     @else
@@ -77,7 +80,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">Par le peuple, pour le peuple</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">La plateforme numero une sur le developpement de votre commune </h2>
                     @guest
-                     <a class="btn btn-outline-gold" href="{{route('register')}}">JE PARTICIPE</a>
+                     <a class="btn btn-outline-gold" href="{{route('register',['bg'=>'../../images/login.jpg'])}}">JE PARTICIPE</a>
                     @endguest
                 </div>
             </div>
@@ -155,7 +158,7 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         
-                        <a class="btn btn-outline-gold" href="{{route('register')}}">JE PARTICIPE</a>
+                        <a class="btn btn-outline-gold" href="{{route('register',['bg'=>'../../images/login.jpg'])}}">JE PARTICIPE</a>
                        
                     </div>
                 </div>

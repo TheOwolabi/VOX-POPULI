@@ -29,6 +29,7 @@ class RegisterController extends Controller
     |
     */
 
+    public $bg = '../../images/login.jpg';
     use RegistersUsers;
 
     /**
