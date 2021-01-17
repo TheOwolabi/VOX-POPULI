@@ -11024,6 +11024,7 @@ div.row.no-gutters.border.rounded.overflow-hidden.flex-md-row.mb-4.shadow-sm.h-m
 
 #idea {
   border-left: solid 6px gold;
+  color: beige;
 }
 
 .title:hover {
@@ -11102,6 +11103,10 @@ a:hover {
   height: 160px;
 }
 
+a.dropdown-item {
+  color: #ffffff;
+}
+
 .dropdown-item:hover,
 .dropdown-item:focus {
   box-shadow: 1px 1px 3px black;
@@ -11110,6 +11115,18 @@ a:hover {
   background-color: #ffe54f;
   font-size: 17px;
   transition: 0.3s;
+}
+
+a.vox {
+  text-decoration: none;
+  font-size: 18px;
+  color: gold;
+  font-weight: bold;
+}
+
+a.vox:hover {
+  color: white;
+  transition: 0.5s;
 }
 
 .btn-gold {

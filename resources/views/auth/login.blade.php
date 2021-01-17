@@ -25,9 +25,10 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
 					@csrf
-					<span class="login100-form-logo">
+					<span class="login100-form-logo" style="background-image: url('images/log-photo.png');background-size: 134px;background-repeat: no-repeat;background-position-x: -5px;background-position-y: -3px;">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
+					
 
 					<span class="login100-form-title p-b-34 p-t-27">
 						Log in

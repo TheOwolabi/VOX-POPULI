@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
+        <title>VOX-POPULI</title>
         <link rel="icon" type="image/x-icon" href="images/acceuil/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -28,21 +28,21 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                         </li>
                         @if (Route::has('register'))
                         @php
                             $bg = '../../images/login.jpg';
                         @endphp
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register',['bg'=>'../../images/login.jpg']) }}">Register</a>
+                                <a class="nav-link" href="{{ route('register',['bg'=>'../../images/login.jpg']) }}">Inscription</a>
                             </li>
                         @endif
                     @else
                                 <a class="nav-link" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Déconnexion') }}
                                 </a>
                 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

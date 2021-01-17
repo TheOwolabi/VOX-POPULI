@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row d-flex justify-content-center mt-4">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div id="idea" class="row no-gutters overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
                 <div class="d-inline-block">
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="float-left">
-                       <h3 class="mb-0"> <a href="{{route('idea.show',$idea)}}">{{$idea->topic}} </a> </h3> 
+                      <a href="{{route('idea.show',$idea)}}">  <h2 class="mb-0" style="color: rgb(185, 158, 5)"> {{$idea->topic}} </h2> </a> 
                     </div>
                     <div class="d-flex justify-content-center">
                         @if($idea->status === 'rejeté')
