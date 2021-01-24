@@ -25,7 +25,7 @@ You may install LARAVEL framework from composer by running ``` composer global r
 
 - [Node.js](https://nodejs.org/en/)
 - [XAMPP](https://www.apachefriends.org/fr/index.html) (be carefull to choose the good version depending on your OS)
-- [VONAGE](https://dashboard.nexmo.com/sign-up) : Create an account in order to use sms verification 
+ 
 
 ---
 
