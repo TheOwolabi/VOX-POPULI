@@ -41,8 +41,7 @@ DB_DATABASE=populi
 DB_USERNAME=root
 DB_PASSWORD=
 
-NEXMO_KEY = (find in your VONAGE dashboard, Getting Started section)
-NEXMO_SECRET = (find in your VONAGE dashboard, Getting Started section)
+
 ```
 **Create a MySQL database called ``populi``**
 
